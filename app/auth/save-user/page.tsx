@@ -18,6 +18,7 @@ async function page() {
     redirect("/");
   } else {
     const res = await addUserIndb(formData);
+    console.log(res);
   }
 
   return (

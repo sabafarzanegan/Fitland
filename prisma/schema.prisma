@@ -21,8 +21,25 @@ model User {
   name           String?
   imageUrl       String?
   city           String?
-  address        String?                      
+  phoneNumber    String?   @unique                     
   isAdmin        Boolean  @default(false)     
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  address     Address? @relation(fields: [addressId], references: [id])
+  addressId   String?  @unique   
+}
+
+
+model Address {
+  id        String   @id @default(cuid()) 
+  city      String
+  address  String
+  state    String
+  zipcode  String
+  number   String
+  unit     String
+  reciving String
+  phonenum  String
+  user    User?  @relation() 
+
 }

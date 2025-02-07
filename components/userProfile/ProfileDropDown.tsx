@@ -34,7 +34,9 @@ function ProfileDropDown() {
           <div className="flex flex-col items-center gap-y-3">
             {/* dashboard link */}
             <div className="bg-secondary-main  w-full px-2 py-1 rounded-sm text-white ">
-              <Link href="/dashboard">حساب کاربری</Link>
+              <Link onClick={() => setIsshow(false)} href="/profile/info">
+                حساب کاربری
+              </Link>
             </div>
             {/* logOutlink */}
             <div className="bg-cinnabar-500 hover:bg-cinnabar-800 w-full px-2 py-1 rounded-sm text-white ">
