@@ -31,3 +31,14 @@ export type FormAddress = {
   reciving: string | undefined;
   phonenum: string | undefined;
 };
+
+export type formAddressAction = {
+  address: string;
+  city: string;
+  state: string;
+  zipcode: string;
+  number: string;
+  unit: string;
+  reciving: string;
+  phonenum: string;
+};

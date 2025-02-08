@@ -1,7 +1,7 @@
 "use server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import db from "./db";
-import { addUserType, FormAddress } from "./type";
+import { addUserType, FormAddress, formAddressAction } from "./type";
 export const checkUserIndb = async () => {
   try {
     const { getUser } = getKindeServerSession();
@@ -81,7 +81,7 @@ export const updateUserData = async (formData: FormData) => {
 };
 
 export const saveUserAddress = async (
-  dataAddress: FormAddress,
+  dataAddress: formAddressAction,
   userId: string | undefined
 ) => {
   try {
