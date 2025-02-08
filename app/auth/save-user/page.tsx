@@ -19,6 +19,9 @@ async function page() {
   } else {
     const res = await addUserIndb(formData);
     console.log(res);
+    if (res.isSuccess) {
+      redirect("/");
+    }
   }
 
   return (
