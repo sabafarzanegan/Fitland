@@ -1,31 +1,17 @@
 "use client";
-import { ProfileLink } from "@/assets/helper/helper";
+import { AdminLink } from "@/assets/helper/helper";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs";
-import { LayoutDashboard } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-function ProfileLinks({ isAdmin }: { isAdmin: boolean | undefined }) {
+function AdminLinks() {
   const param = usePathname();
 
   return (
     <div className="mx-auto flex items-center justify-center">
       <ul className="px-[2px]">
-        {isAdmin && (
-          <Link href="/dashboard">
-            <li
-              className={`flex items-center gap-x-2 px-[32px] ${
-                param === "/dashboard"
-                  ? "text-secondary-400 border-b-secondary-400"
-                  : "text-neutral-800"
-              }   w-[228px] h-[62px] border-b `}>
-              <span>{<LayoutDashboard />}</span>
-              <span>داشبورد ادمین</span>
-            </li>
-          </Link>
-        )}
-        {ProfileLink.map((item) => {
+        {AdminLink.map((item) => {
           return (
             <>
               <Link key={item.id} href={item.link}>
@@ -35,7 +21,7 @@ function ProfileLinks({ isAdmin }: { isAdmin: boolean | undefined }) {
                       ? "text-secondary-400 border-b-secondary-400"
                       : "text-neutral-800"
                   }   w-[228px] h-[62px] border-b `}>
-                  <Image src={item.icon} alt="" width={20} height={20} />
+                  <span>{<item.icon className="w-4 h-4" />}</span>
                   <span>{item.name}</span>
                 </li>
               </Link>
@@ -55,4 +41,4 @@ function ProfileLinks({ isAdmin }: { isAdmin: boolean | undefined }) {
   );
 }
 
-export default ProfileLinks;
+export default AdminLinks;

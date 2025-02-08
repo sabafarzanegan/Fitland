@@ -49,6 +49,7 @@ export const getUserInfo = async (id: string) => {
         name: true,
         id: true,
         phoneNumber: true,
+        isAdmin: true,
       },
     });
     return userInfo;

@@ -1,10 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 
 function Logo() {
   return (
     <div>
       <div className="hidden md:block">
-        <Image src="/images/logo.svg" alt="logosvg" width={150} height={32} />
+        <Link href="/">
+          <Image src="/images/logo.svg" alt="logosvg" width={150} height={32} />
+        </Link>
       </div>
       <div className="block md:hidden">
         <Image src="/images/logo.svg" alt="logosvg" width={81} height={28} />

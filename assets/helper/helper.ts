@@ -1,4 +1,5 @@
 import { link } from "fs";
+import { FolderKanban, Plus, Tickets } from "lucide-react";
 
 export const menueItem = [
   { id: 1, name: "مردانه" },
@@ -43,5 +44,26 @@ export const ProfileLink = [
     name: "دیدگاه ها و نظرات",
     icon: "/images/message.svg",
     link: "/profile/messages",
+  },
+];
+
+export const AdminLink = [
+  {
+    id: 1,
+    name: "محصولات",
+    icon: FolderKanban,
+    link: "/dashboard/products",
+  },
+  {
+    id: 2,
+    name: "اضافه کردن",
+    icon: Plus,
+    link: "/dashboard/add-product",
+  },
+  {
+    id: 2,
+    name: "مدیریت محصولات",
+    icon: Tickets,
+    link: "/dashboard/manage",
   },
 ];

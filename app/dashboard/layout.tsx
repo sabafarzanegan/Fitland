@@ -1,3 +1,4 @@
+import AdminLinks from "@/components/admin/AdminLinks";
 import ProfileLinks from "@/components/userProfile/ProfileLinks";
 import { getUserInfo } from "@/utils/actions";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -30,7 +31,7 @@ async function layout({ children }: { children: ReactNode }) {
           </div>
         </div>
         {/* linkItems */}
-        <ProfileLinks isAdmin={userInfo?.isAdmin} />
+        <AdminLinks />
       </div>
       {/* content */}
       <div className="flex-1">{children}</div>
