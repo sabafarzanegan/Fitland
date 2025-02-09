@@ -9,7 +9,7 @@ import { ReactNode } from "react";
 async function layout({ children }: { children: ReactNode }) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  const userInfo = await getUserInfo(user.id);
+
   return (
     <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5">
       {/* sidebar */}

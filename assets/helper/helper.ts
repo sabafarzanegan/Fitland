@@ -67,3 +67,22 @@ export const AdminLink = [
     link: "/dashboard/manage",
   },
 ];
+
+export const categoryItems = [
+  { id: 1, name: "مردانه", value: "mens" },
+  {
+    id: 2,
+    name: "زنانه",
+    value: "womens",
+  },
+  {
+    id: 3,
+    name: "بچگانه",
+    value: "children",
+  },
+  {
+    id: 4,
+    name: "لوازم ورزشی",
+    value: "sports",
+  },
+];

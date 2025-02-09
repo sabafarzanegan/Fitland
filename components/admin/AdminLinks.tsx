@@ -16,6 +16,7 @@ function AdminLinks() {
             <>
               <Link key={item.id} href={item.link}>
                 <li
+                  key={item.id}
                   className={`flex items-center gap-x-2 px-[32px] ${
                     param === item.link
                       ? "text-secondary-400 border-b-secondary-400"

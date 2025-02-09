@@ -2,6 +2,7 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import db from "./db";
 import { addUserType, FormAddress, formAddressAction } from "./type";
+import { supabase } from "./supabase";
 export const checkUserIndb = async () => {
   try {
     const { getUser } = getKindeServerSession();
