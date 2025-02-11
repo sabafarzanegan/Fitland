@@ -1,35 +1,49 @@
 "use client";
 import { useState } from "react";
 import { Input } from "../ui/Input/Input";
+import { useFormContext } from "react-hook-form";
 
 function SizeSelect() {
   const [size, setSize] = useState("");
   const [sizes, setSizes] = useState<{ id: string; value: string }[]>([]);
-
+  const {
+    register,
+    setValue,
+    formState: { errors },
+  } = useFormContext();
   const addSize = () => {
     if (!size) return;
     const newSize = {
       id: crypto.randomUUID(),
       value: size,
     };
-    setSizes((prevsize) => [...prevsize, newSize]);
+    const updatedSizes = [...sizes, newSize];
+    setSizes(updatedSizes);
+    setValue("sizes", updatedSizes);
+
     setSize("");
   };
+
   return (
     <div className="border p-4 rounded-[14px]">
       <div className="flex items-center justify-center gap-x-4">
         <Input
+          {...register("sizes")}
           value={size}
           title="انتخاب سایز"
           onChange={(e) => setSize(e.target.value)}
         />
+
         <button
           type="button"
           onClick={addSize}
-          className="w-[128px] h-[30px] bg-primary-main rounded-[8px] text-white">
+          className="px-2 py-1 text-sm bg-primary-main rounded-[8px] text-white">
           اضافه کردن
         </button>
       </div>
+      {errors.sizes && (
+        <p className="text-red-500 text-sm">{errors.sizes.message as string}</p>
+      )}
       <div className="flex items-center flex-wrap gap-x-1">
         {sizes?.map((item) => (
           <span

@@ -2,14 +2,20 @@
 
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 import { toast, Toaster } from "sonner";
 
 function ImageUploader() {
   const [images, setImages] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [imageUrls, setImageUrls] = useState<{ url: string }[]>([]);
   const [isLoading, setIsloading] = useState(false);
-
+  const {
+    register,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useFormContext();
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const files = Array.from(e.target.files);
@@ -46,6 +52,8 @@ function ImageUploader() {
         const data = await res.json();
         if (data) {
           toast.success("عکس شما با موفقیت ارسال شد");
+          setPreviewUrls([]);
+          setImages([]);
         }
         setIsloading(false);
         return data.secure_url;
@@ -57,13 +65,18 @@ function ImageUploader() {
     });
 
     const urls = await Promise.all(uploadPromises);
-    setImageUrls(urls.filter((url) => url !== null));
+    const formattedUrls = urls
+      .filter((url) => url !== null)
+      .map((url) => ({ url }));
+
+    setImageUrls(formattedUrls);
+    setValue("images", formattedUrls);
   };
-  console.log("images url", imageUrls);
 
   return (
     <div className="w-full border p-4  rounded-[14px]">
       <input
+        {...register("images")}
         type="file"
         multiple
         accept="image/*"
@@ -76,7 +89,11 @@ function ImageUploader() {
         className="cursor-pointer bg-blue-500 text-white px-4 py-2 rounded-lg">
         انتخاب تصاویر
       </label>
-
+      {errors.images && (
+        <p className="text-red-500 text-sm mt-4">
+          {errors.images.message as string}
+        </p>
+      )}
       <div className="flex flex-wrap gap-2 mt-4">
         {previewUrls.map((url, index) => (
           <div key={index} className="relative">

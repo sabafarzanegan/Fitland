@@ -1,8 +1,14 @@
 "use server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import db from "./db";
-import { addUserType, FormAddress, formAddressAction } from "./type";
+import {
+  addUserType,
+  FormAddress,
+  formAddressAction,
+  ProductType,
+} from "./type";
 import { supabase } from "./supabase";
+import { url } from "inspector";
 export const checkUserIndb = async () => {
   try {
     const { getUser } = getKindeServerSession();
@@ -127,5 +133,39 @@ export const getAddressInfo = async (userId: string | undefined) => {
     return findUserAddress;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const createProduct = async (values: ProductType) => {
+  try {
+    const newProduct = await db.product.create({
+      data: {
+        name: values.name,
+        categoryName: values.category,
+        price: Number(values.price),
+        discountPrice: Number(values.discountPrice),
+        description: values.description,
+        images: {
+          create: values.images.map((image: { url: string }) => ({
+            url: image.url,
+          })),
+        },
+        sizes: {
+          create: values.sizes.map((size: { id: string; value: string }) => ({
+            value: size.value,
+          })),
+        },
+        colors: {
+          create: values.colors.map((color: { name: string; hex: string }) => ({
+            name: color.name,
+            hex: color.hex,
+          })),
+        },
+      },
+    });
+    return { isSuccess: true, message: "محصول با موفقیت ساخته شد" };
+  } catch (error) {
+    console.log(error);
+    return { isSuccess: false, message: error };
   }
 };

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "../../../utils/lib";
+import { useFormContext } from "react-hook-form";
 
 interface SelectProps extends React.ComponentProps<"select"> {
   data: { id: number | string; value: string; name: string }[];
@@ -8,6 +9,11 @@ interface SelectProps extends React.ComponentProps<"select"> {
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, data, title, ...props }, ref) => {
+    const {
+      register,
+      setValue,
+      formState: { errors },
+    } = useFormContext();
     return (
       <div className="relative w-full">
         <label
@@ -18,15 +24,19 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           {title}
         </label>
         <select
+          {...register("category")}
+          onChange={(e) => setValue("category", e.target.value)}
           {...props}
           ref={ref}
           id="province"
           name="province"
           className="w-full py-2 pl-3 pr-10 text-base border border-gray-300 rounded-lg focus:outline-none focus:border-secondary-400">
           {data.map((item) => (
-            <option key={item.id} value={item.value}>
-              {item.name}
-            </option>
+            <>
+              <option key={item.id} value={item.value}>
+                {item.name}
+              </option>
+            </>
           ))}
         </select>
       </div>

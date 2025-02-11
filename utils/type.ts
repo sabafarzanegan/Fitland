@@ -42,3 +42,14 @@ export type formAddressAction = {
   reciving: string;
   phonenum: string;
 };
+
+export type ProductType = {
+  name: string;
+  category: string;
+  description: string;
+  images: { url: string }[];
+  sizes: { id: string; value: string }[];
+  colors: { name: string; hex: string }[];
+  price: string;
+  discountPrice: string;
+};

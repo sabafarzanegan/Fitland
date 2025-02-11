@@ -48,8 +48,8 @@ model Address {
 model Product {
   id            String   @id @default(uuid()) 
   name          String
-  category      Category @relation(fields: [categoryId], references: [id])
-  categoryId    String
+  categoryName  String   
+  description   String 
   images        Image[] 
   sizes         Size[]  
   colors        Color[]  
@@ -60,11 +60,9 @@ model Product {
 }
 
 model Category {
-  id       String    @id @default(uuid())
-  name     String
-  products Product[]
+  id   String  @id @default(uuid())
+  name String  @unique  
 }
-
 model Image {
   id        String  @id @default(uuid())
   url       String  
