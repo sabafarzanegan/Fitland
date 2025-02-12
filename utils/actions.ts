@@ -1,14 +1,10 @@
 "use server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import db from "./db";
-import {
-  addUserType,
-  FormAddress,
-  formAddressAction,
-  ProductType,
-} from "./type";
-import { supabase } from "./supabase";
-import { url } from "inspector";
+import { addUserType, formAddressAction, ProductType } from "./type";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+
 export const checkUserIndb = async () => {
   try {
     const { getUser } = getKindeServerSession();
@@ -167,5 +163,102 @@ export const createProduct = async (values: ProductType) => {
   } catch (error) {
     console.log(error);
     return { isSuccess: false, message: error };
+  }
+};
+
+export const getAllProduct = async () => {
+  try {
+    const products = await db.product.findMany({
+      include: {
+        images: true,
+        sizes: true,
+        colors: true,
+      },
+    });
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProductById = async (id: string) => {
+  try {
+    const product = await db.product.findFirst({
+      where: {
+        id: id,
+      },
+      include: {
+        images: true,
+        colors: true,
+        sizes: true,
+      },
+    });
+
+    return product;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateProductById = async (id: string, formdata: ProductType) => {
+  console.log(formdata);
+  console.log(id);
+
+  try {
+    await db.image.deleteMany({
+      where: {
+        productId: id,
+      },
+    });
+
+    await db.size.deleteMany({
+      where: {
+        productId: id,
+      },
+    });
+
+    await db.color.deleteMany({
+      where: {
+        productId: id,
+      },
+    });
+
+    const updatedData = await db.product.update({
+      where: {
+        id: id,
+      },
+      data: {
+        name: formdata.name,
+        categoryName: formdata.category,
+        price: Number(formdata.price),
+        discountPrice: Number(formdata.discountPrice),
+
+        images: {
+          create: formdata.images.map((image: { url: string }) => ({
+            url: image.url,
+          })),
+        },
+
+        sizes: {
+          create: formdata.sizes.map((size: { id: string; value: string }) => ({
+            value: size.value,
+          })),
+        },
+
+        colors: {
+          create: formdata.colors.map(
+            (color: { name: string; hex: string }) => ({
+              name: color.name,
+              hex: color.hex,
+            })
+          ),
+        },
+      },
+    });
+    revalidatePath("/dashboard/products");
+    return { isSuccess: true };
+  } catch (error) {
+    console.log(error);
+    return { isSuccess: false };
   }
 };

@@ -1,9 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "../ui/Input/Input";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 
-function SizeSelect() {
+function SizeSelect({
+  edit,
+  allsize,
+}: {
+  edit?: boolean;
+  allsize?: { id: string; value: string }[];
+}) {
   const [size, setSize] = useState("");
   const [sizes, setSizes] = useState<{ id: string; value: string }[]>([]);
   const {
@@ -23,7 +29,18 @@ function SizeSelect() {
 
     setSize("");
   };
+  const watchSizes = useWatch({ name: "sizes" });
+  useEffect(() => {
+    if (edit && watchSizes) {
+      setSizes(watchSizes);
+    }
+  }, [edit, watchSizes]);
 
+  const removeSize = (id: string) => {
+    const updatedsizes = sizes.filter((size) => size.id !== id);
+    setSizes(updatedsizes);
+    setValue("sizes", updatedsizes);
+  };
   return (
     <div className="border p-4 rounded-[14px]">
       <div className="flex items-center justify-center gap-x-4">
@@ -47,7 +64,7 @@ function SizeSelect() {
       <div className="flex items-center flex-wrap gap-x-1">
         {sizes?.map((item) => (
           <span
-            onClick={() => setSizes(sizes.filter((siz) => siz.id !== item.id))}
+            onClick={() => removeSize(item.id)}
             className="text-neutral-600 bg-neutral-200 px-2 rounded-sm cursor-pointer"
             key={item.id}>
             {item.value}

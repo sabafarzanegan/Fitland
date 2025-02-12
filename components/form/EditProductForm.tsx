@@ -3,36 +3,42 @@ import React from "react";
 import { Input } from "../ui/Input/Input";
 import { categoryItems } from "@/assets/helper/helper";
 import ColorSelect from "./ColorSelect";
-
 import SizeSelect from "./SizeSelect";
 import ImageUploader from "./ImageUoloader";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { formproductSchema } from "../../utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createProduct } from "@/utils/actions";
+import { createProduct, updateProductById } from "@/utils/actions";
 import { Loader2 } from "lucide-react";
 import { toast, Toaster } from "sonner";
+import { getProduct } from "@/utils/type";
+import { redirect } from "next/navigation";
 
-function ProductForm() {
+function EditProductForm({
+  product,
+}: {
+  product: getProduct | undefined | null;
+}) {
   const form = useForm<z.infer<typeof formproductSchema>>({
     resolver: zodResolver(formproductSchema),
     defaultValues: {
-      name: "",
-      category: "",
-      description: "",
-      images: [],
-      sizes: [],
-      colors: [],
-      price: "",
-      discountPrice: "",
+      name: product?.name || "",
+      category: product?.categoryName || "",
+      description: product?.description || "",
+      images: product?.images,
+      sizes: product?.sizes || [],
+      colors: product?.colors || [],
+      price: product?.price.toString(),
+      discountPrice: product?.discountPrice?.toString(),
     },
   });
   const onSubmit = async (values: z.infer<typeof formproductSchema>) => {
-    const res = await createProduct(values);
+    console.log(values);
+    const res = await updateProductById(product?.id as string, values);
 
     if (res.isSuccess) {
-      toast.success("محصول با موفقیت  ساخته شد");
+      toast.success("محصول با تغییر کرد");
       form.reset();
     } else {
       toast.error("خطا!دوباره تلاش کنید");
@@ -102,10 +108,10 @@ function ProductForm() {
           </div>
           {/* choose colors */}
           <div className="mt-4">
-            <ColorSelect />
+            <ColorSelect edit={true} />
           </div>
           <div className="mt-4">
-            <SizeSelect />
+            <SizeSelect edit={true} allsize={product?.sizes} />
           </div>
           <div className="mt-4">
             <ImageUploader />
@@ -138,4 +144,4 @@ function ProductForm() {
   );
 }
 
-export default ProductForm;
+export default EditProductForm;

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
 
-function ColorSelect() {
+function ColorSelect({ edit }: { edit?: boolean }) {
   const [colors, setColors] = useState<
     { name: string; hex: string; id: string }[]
   >([]);
@@ -24,6 +24,18 @@ function ColorSelect() {
     const updatedColor = [...colors, newColor];
     setColors(updatedColor);
     setValue("colors", updatedColor);
+  };
+
+  const watchcolors = useWatch({ name: "colors" });
+  useEffect(() => {
+    if (edit && watchcolors) {
+      setColors(watchcolors);
+    }
+  }, [watchcolors, edit]);
+  const removeColor = (id: string) => {
+    const updatedColors = colors.filter((cls) => cls.id !== id);
+    setColors(updatedColors);
+    setValue("colors", updatedColors);
   };
 
   return (
@@ -52,9 +64,7 @@ function ColorSelect() {
       <div className="mt-2 flex flex-wrap gap-2">
         {colors.map((item, index) => (
           <span
-            onClick={() =>
-              setColors(colors.filter((cls) => cls.id !== item.id))
-            }
+            onClick={() => removeColor(item.id)}
             key={index}
             className="w-5 h-5 rounded-full border cursor-pointer"
             style={{ backgroundColor: item.hex }}></span>

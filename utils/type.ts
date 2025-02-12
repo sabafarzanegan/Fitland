@@ -53,3 +53,17 @@ export type ProductType = {
   price: string;
   discountPrice: string;
 };
+
+export type getProduct = {
+  id: string;
+  name: string;
+  categoryName: string;
+  description: string;
+  price: number;
+  discountPrice: number | null;
+  createdAt: Date;
+  updatedAt: Date;
+  images: { id: string; url: string; productId: string }[];
+  sizes: { id: string; value: string; productId: string }[];
+  colors: { id: string; name: string; hex: string; productId: string }[];
+};
