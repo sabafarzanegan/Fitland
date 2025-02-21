@@ -9,7 +9,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { formproductSchema } from "../../utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createProduct, updateProductById } from "@/utils/actions";
+import { updateProductById } from "@/utils/actions";
 import { Loader2 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { getProduct } from "@/utils/type";
@@ -26,7 +26,7 @@ function EditProductForm({
       name: product?.name || "",
       category: product?.categoryName || "",
       description: product?.description || "",
-      images: product?.images,
+      images: product?.images || [],
       sizes: product?.sizes || [],
       colors: product?.colors || [],
       price: product?.price.toString(),
@@ -39,7 +39,6 @@ function EditProductForm({
 
     if (res.isSuccess) {
       toast.success("محصول با تغییر کرد");
-      form.reset();
     } else {
       toast.error("خطا!دوباره تلاش کنید");
     }
@@ -134,7 +133,7 @@ function EditProductForm({
             {form.formState.isSubmitting ? (
               <Loader2 className="animate-spin mx-auto" />
             ) : (
-              "ساختن"
+              "اصلاح"
             )}
           </button>
         </form>

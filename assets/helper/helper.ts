@@ -2,10 +2,10 @@ import { link } from "fs";
 import { FolderKanban, Plus, Tickets } from "lucide-react";
 
 export const menueItem = [
-  { id: 1, name: "مردانه" },
-  { id: 2, name: "زنانه" },
-  { id: 3, name: "بچگانه" },
-  { id: 4, name: "لوازم ورزشی" },
+  { id: 1, name: "مردانه", value: "mens" },
+  { id: 2, name: "زنانه", value: "womens" },
+  { id: 3, name: "بچگانه", value: "children" },
+  { id: 4, name: "لوازم ورزشی", value: "sports" },
 ];
 
 export const menuFilter = [
@@ -85,4 +85,10 @@ export const categoryItems = [
     name: "لوازم ورزشی",
     value: "sports",
   },
+];
+
+export const filterProduct = [
+  { id: 2, name: "جدیدترین", value: "new" },
+  { id: 4, name: "گران ترین", value: "expensive" },
+  { id: 5, name: "ارزان ترین", value: "cheapest" },
 ];

@@ -166,9 +166,18 @@ export const createProduct = async (values: ProductType) => {
   }
 };
 
-export const getAllProduct = async () => {
+export const getAllProduct = async (categoryFilter = "") => {
   try {
+    let query = {};
+    if (categoryFilter === "new") {
+      query = { orderBy: { createdAt: "desc" } };
+    } else if (categoryFilter === "expensive") {
+      query = { orderBy: { price: "desc" } };
+    } else if (categoryFilter === "cheapest") {
+      query = { orderBy: { price: "asc" } };
+    }
     const products = await db.product.findMany({
+      ...query,
       include: {
         images: true,
         sizes: true,
@@ -201,9 +210,6 @@ export const getProductById = async (id: string) => {
 };
 
 export const updateProductById = async (id: string, formdata: ProductType) => {
-  console.log(formdata);
-  console.log(id);
-
   try {
     await db.image.deleteMany({
       where: {
@@ -259,6 +265,28 @@ export const updateProductById = async (id: string, formdata: ProductType) => {
     return { isSuccess: true };
   } catch (error) {
     console.log(error);
+    return { isSuccess: false };
+  }
+};
+
+export const deletProductById = async (
+  id: string
+): Promise<{ isSuccess: boolean }> => {
+  console.log(id);
+
+  try {
+    const deletedPro = await db.product.delete({
+      where: {
+        id: id,
+      },
+    });
+    console.log(deletedPro);
+
+    revalidatePath("/dashboard/products");
+    return { isSuccess: true };
+  } catch (error) {
+    console.log(error);
+
     return { isSuccess: false };
   }
 };

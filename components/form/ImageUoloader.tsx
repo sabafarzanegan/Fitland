@@ -1,8 +1,8 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { useFormContext, useWatch } from "react-hook-form";
 import { toast, Toaster } from "sonner";
 
 function ImageUploader() {
@@ -10,10 +10,13 @@ function ImageUploader() {
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [imageUrls, setImageUrls] = useState<{ url: string }[]>([]);
   const [isLoading, setIsloading] = useState(false);
+
+  console.log(images);
+
   const {
     register,
     setValue,
-    getValues,
+
     formState: { errors },
   } = useFormContext();
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +29,17 @@ function ImageUploader() {
       setPreviewUrls((prev) => [...prev, ...newPreviews]);
     }
   };
+
+  const watchImage = useWatch({ name: "images" });
+
+  useEffect(() => {
+    if (watchImage) {
+      const urls = watchImage.map(
+        (img: { id: string; url: string }) => img.url
+      );
+      setPreviewUrls(urls);
+    }
+  }, [watchImage]);
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
@@ -110,7 +124,7 @@ function ImageUploader() {
           </div>
         ))}
       </div>
-      {images.length > 0 && (
+      {previewUrls.length > 0 && (
         <button
           disabled={isLoading}
           type="button"

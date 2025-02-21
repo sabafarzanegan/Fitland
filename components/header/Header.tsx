@@ -17,7 +17,7 @@ async function Header() {
 
   return (
     <>
-      <div className="flex items-center justify-between gap-x-10 mt-10">
+      <div className="flex items-center justify-between gap-x-10 mt-10 ">
         <Logo />
         <Search inpage={false} />
         <div className=" items-center justify-center gap-x-[14px] hidden md:flex">

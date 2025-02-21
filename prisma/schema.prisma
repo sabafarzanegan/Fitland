@@ -66,14 +66,15 @@ model Category {
 model Image {
   id        String  @id @default(uuid())
   url       String  
-  product   Product @relation(fields: [productId], references: [id])
+  product  Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
   productId String
 }
 
 model Size {
   id        String  @id @default(uuid())
   value     String  
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id] ,onDelete: Cascade)
   productId String
 }
 
@@ -81,6 +82,6 @@ model Color {
   id        String  @id @default(uuid())
   name      String  
   hex       String  
-  product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id] ,onDelete: Cascade)
   productId String
 }

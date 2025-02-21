@@ -4,7 +4,6 @@ import React from "react";
 
 async function page({ params }: { params: { id: string } }) {
   const product = await getProductById(params.id);
-  console.log(product);
 
   return (
     <div>
