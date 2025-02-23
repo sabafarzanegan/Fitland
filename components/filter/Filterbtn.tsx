@@ -20,7 +20,7 @@ function Filterbtn() {
       {filterProduct.map((item) => (
         <li
           onClick={() => filterHandler(item.value)}
-          className={`cursor-pointer py-2 px-3 ${
+          className={`cursor-pointer py-2 px-3 text-lg ${
             item.value === filter
               ? "text-primary-main  border-b-primary-main border-b-2"
               : ""

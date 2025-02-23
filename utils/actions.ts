@@ -4,6 +4,7 @@ import db from "./db";
 import { addUserType, formAddressAction, ProductType } from "./type";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import prisma from "./db";
 
 export const checkUserIndb = async () => {
   try {
@@ -166,7 +167,11 @@ export const createProduct = async (values: ProductType) => {
   }
 };
 
-export const getAllProduct = async (categoryFilter = "") => {
+export const getAllProduct = async (
+  categoryFilter = "",
+  skip = 0,
+  take = 10
+) => {
   try {
     let query = {};
     if (categoryFilter === "new") {
@@ -177,6 +182,8 @@ export const getAllProduct = async (categoryFilter = "") => {
       query = { orderBy: { price: "asc" } };
     }
     const products = await db.product.findMany({
+      skip,
+      take,
       ...query,
       include: {
         images: true,

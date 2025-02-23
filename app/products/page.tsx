@@ -1,32 +1,34 @@
 import ProductCard from "@/components/card/ProductCard";
 import Filterbtn from "@/components/filter/Filterbtn";
+import LoadingProduct from "@/components/product/LoadingProduct";
+import ProductList from "@/components/product/ProductList";
 import { getAllProduct } from "@/utils/actions";
-import React from "react";
+import React, { Suspense } from "react";
 
 async function page({
   searchParams,
 }: {
-  searchParams: { filter: string | undefined | null };
+  searchParams: {
+    [key: string]: string | string[] | undefined;
+  };
 }) {
   const categoryFilter = searchParams.filter || "";
-
-  const allProducts = await getAllProduct(categoryFilter);
+  const page = searchParams["page"] ?? "1";
+  const per_page = searchParams["per_page"] ?? "2";
 
   return (
     <section>
       <h1 className="my-10 text-xl font-semibold">محصولات</h1>
       <div className="flex items-center justify-between mb-6">
         <Filterbtn />
-        <p className="text-neutral-400">
-          {allProducts?.length.toLocaleString("fa-IR")}
-          کالا
-        </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {allProducts?.map((product) => (
-          <ProductCard product={product} edit={false} />
-        ))}
-      </div>
+      <Suspense fallback={<LoadingProduct />}>
+        <ProductList
+          page={page}
+          per_page={per_page}
+          categoryFilter={categoryFilter}
+        />
+      </Suspense>
     </section>
   );
 }

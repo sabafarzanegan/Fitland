@@ -33,7 +33,7 @@ function ProductCard({
   };
   return (
     <>
-      <div className=" rounded-[16px]  overflow-hidden max-w-md w-full border mx-auto ">
+      <div className=" rounded-[16px]  overflow-hidden max-w-md h-fit w-full border mx-auto ">
         {/* image product */}
         <div className=" w-full h-[280px] relative">
           <Image
@@ -69,9 +69,12 @@ function ProductCard({
             </span>
           </div>
           <div>
-            <p className="text-body-6">{`از سایز ${
-              product.sizes[0].value
-            }تا سایز ${product.sizes[product.sizes.length - 1].value}`}</p>
+            <p className="text-body-6">
+              <span className="px-1">از سایز </span>{" "}
+              {`${product.sizes[0].value}تا سایز${
+                product.sizes[product.sizes.length - 1].value
+              }`}
+            </p>
           </div>
         </div>
         <div className=" w-24 h-10 flex items-center justify-center">
