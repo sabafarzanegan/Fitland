@@ -19,3 +19,9 @@ body {
   width: 0.3rem;
   background-color: #fa541c;
 }
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 15px;
+  background: #ccc;
+  border-radius: 16px;
+}

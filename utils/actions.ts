@@ -169,11 +169,11 @@ export const createProduct = async (values: ProductType) => {
 
 export const getAllProduct = async (
   categoryFilter = "",
-  skip = 0,
-  take = 10
+  brand: string | string[]
 ) => {
   try {
     let query = {};
+
     if (categoryFilter === "new") {
       query = { orderBy: { createdAt: "desc" } };
     } else if (categoryFilter === "expensive") {
@@ -181,10 +181,18 @@ export const getAllProduct = async (
     } else if (categoryFilter === "cheapest") {
       query = { orderBy: { price: "asc" } };
     }
+    // const whereCondition = brand && brand !== "" ? { categoryName: brand } : "";
+    let whereCondition = {};
+    if (brand && brand !== "") {
+      whereCondition = Array.isArray(brand)
+        ? { categoryName: { in: brand } }
+        : { categoryName: brand };
+    }
     const products = await db.product.findMany({
-      skip,
-      take,
       ...query,
+      where: {
+        ...whereCondition,
+      },
       include: {
         images: true,
         sizes: true,

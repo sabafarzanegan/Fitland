@@ -7,8 +7,11 @@ function Menu() {
     <div className="mt-[38px] hidden md:block bg-neutral-100 py-5 px-10 rounded-[16px]">
       <div className="flex items-center justify-between gap-x-4">
         <ul className="flex items-center gap-x-6 lg:gap-x-10 text-[0.65rem] lg:text-[0.82rem] xl:text-[1rem] font-bold text-neutral-800">
+          <Link href="/products">
+            <li>محصولات</li>
+          </Link>
           {menueItem.map((item) => (
-            <Link href={`/products/?${item.value}`}>
+            <Link href={`/products/?brand=${item.value}`}>
               <li key={item.id}>{item.name}</li>
             </Link>
           ))}

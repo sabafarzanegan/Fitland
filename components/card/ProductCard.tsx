@@ -33,81 +33,83 @@ function ProductCard({
   };
   return (
     <>
-      <div className=" rounded-[16px]  overflow-hidden max-w-md h-fit w-full border mx-auto ">
-        {/* image product */}
-        <div className=" w-full h-[280px] relative">
-          <Image
-            src={product.images[0].url}
-            fill
-            alt=""
-            className="w-full h-full overflow-hidden rounded-t-[16px]"
-          />
-          {product?.discountPrice && (
-            <div className="w-[72px] h-[29px] bg-primary-main absolute flex items-center justify-center rounded-bl-[16px] text-white text-body-5 ">
-              {calcDiscount(product.price, product.discountPrice || 0)}%
-            </div>
-          )}
-        </div>
-        {/* caption product */}
-        <div className=" text-secondary-900 py-3 space-y-4 px-3">
-          <div className="flex items-center justify-between">
-            <p className="text-body-4 text-secondary-900">{product.name}</p>
-            {!edit && (
-              <div className="flex items-center gap-x-[5px]">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star className="w-[13px] h-[13px]" key={i} />
-                ))}
+      <Link href={`/products/${product.id}`}>
+        <div className=" rounded-[16px]  overflow-hidden max-w-lg max-h-[600px] h-full w-full border mx-auto ">
+          {/* image product */}
+          <div className=" w-full h-[280px] relative">
+            <Image
+              src={product.images[0].url}
+              fill
+              alt=""
+              className="w-full h-full overflow-hidden rounded-t-[16px]"
+            />
+            {product?.discountPrice && (
+              <div className="w-[72px] h-[29px] bg-primary-main absolute flex items-center justify-center rounded-bl-[16px] text-white text-body-5 ">
+                {calcDiscount(product.price, product.discountPrice || 0)}%
               </div>
             )}
           </div>
-          <div className="flex items-center gap-x-1">
-            <p className="text-body-5">
-              {product.discountPrice?.toLocaleString("fa-IR")} تومان
-            </p>
-            <span className="text-neutral-500 line-through text-[14px]">
-              {product.price.toLocaleString("fa-IR")} تومان
-            </span>
+          {/* caption product */}
+          <div className=" text-secondary-900 py-3 space-y-4 px-3">
+            <div className="flex items-center justify-between">
+              <p className="text-body-4 text-secondary-900">{product.name}</p>
+              {!edit && (
+                <div className="flex items-center gap-x-[5px]">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star className="w-[13px] h-[13px]" key={i} />
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="flex items-center gap-x-1">
+              <p className="text-body-5">
+                {product.discountPrice?.toLocaleString("fa-IR")} تومان
+              </p>
+              <span className="text-neutral-500 line-through text-[14px]">
+                {product.price.toLocaleString("fa-IR")} تومان
+              </span>
+            </div>
+            <div>
+              <p className="text-body-6">
+                <span className="px-1">از سایز </span>{" "}
+                {`${product.sizes[0].value}تا سایز${
+                  product.sizes[product.sizes.length - 1].value
+                }`}
+              </p>
+            </div>
+          </div>
+          <div className=" w-24 h-10 flex items-center justify-center">
+            {product.colors.map((cls) => (
+              <div
+                style={{ backgroundColor: cls.name }}
+                className=" w-5 h-5  rounded-full"></div>
+            ))}
           </div>
           <div>
-            <p className="text-body-6">
-              <span className="px-1">از سایز </span>{" "}
-              {`${product.sizes[0].value}تا سایز${
-                product.sizes[product.sizes.length - 1].value
-              }`}
-            </p>
-          </div>
-        </div>
-        <div className=" w-24 h-10 flex items-center justify-center">
-          {product.colors.map((cls) => (
-            <div
-              style={{ backgroundColor: cls.name }}
-              className=" w-5 h-5  rounded-full"></div>
-          ))}
-        </div>
-        <div>
-          {edit && (
-            <div className="flex items-center px-3 py-2 justify-between">
-              <Link href={`/dashboard/products/edit/${product.id}`}>
-                <button className="p-2 bg-white transition-all duration-100 hover:bg-secondary-300 hover:text-white rounded-sm">
-                  <Edit className="w-5 h-5" />
-                </button>
-              </Link>
+            {edit && (
+              <div className="flex items-center px-3 py-2 justify-between">
+                <Link href={`/dashboard/products/edit/${product.id}`}>
+                  <button className="p-2 bg-white transition-all duration-100 hover:bg-secondary-300 hover:text-white rounded-sm">
+                    <Edit className="w-5 h-5" />
+                  </button>
+                </Link>
 
-              <button
-                disabled={isLoading}
-                onClick={() => deletProducthandler(product.id)}
-                className="p-2 bg-white transition-all duration-100 hover:bg-cinnabar-500 hover:text-white rounded-sm">
-                {isLoading ? (
-                  <Loader className="animate-spin" />
-                ) : (
-                  <Trash className="w-5 h-5" />
-                )}
-              </button>
-            </div>
-          )}
+                <button
+                  disabled={isLoading}
+                  onClick={() => deletProducthandler(product.id)}
+                  className="p-2 bg-white transition-all duration-100 hover:bg-cinnabar-500 hover:text-white rounded-sm">
+                  {isLoading ? (
+                    <Loader className="animate-spin" />
+                  ) : (
+                    <Trash className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+            )}
+          </div>
+          <Toaster />
         </div>
-        <Toaster />
-      </div>
+      </Link>
     </>
   );
 }
