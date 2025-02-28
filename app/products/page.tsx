@@ -1,9 +1,8 @@
-import ProductCard from "@/components/card/ProductCard";
 import Filterbtn from "@/components/filter/Filterbtn";
-import FilterSidebar from "@/components/product/filterproduct/filterSidebar";
+
 import LoadingProduct from "@/components/product/LoadingProduct";
 import ProductList from "@/components/product/ProductList";
-import { getAllProduct } from "@/utils/actions";
+
 import React, { Suspense } from "react";
 
 async function page({
@@ -36,7 +35,6 @@ async function page({
             />
           </Suspense>
         </div>
-        {/* <FilterSidebar /> */}
       </div>
     </section>
   );

@@ -34,7 +34,7 @@
   height: 100%;
   margin-bottom: 30px;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 .embla-thumbs {
   --thumbs-slide-spacing: 0.8rem;

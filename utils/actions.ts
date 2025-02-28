@@ -224,6 +224,21 @@ export const getProductById = async (id: string) => {
   }
 };
 
+export const getProductForCart = async (productId: string) => {
+  try {
+    const res = await db.product.findFirst({
+      where: {
+        id: productId,
+      },
+      select: {
+        images: true,
+        name: true,
+      },
+    });
+    return res;
+  } catch (error) {}
+};
+
 export const updateProductById = async (id: string, formdata: ProductType) => {
   try {
     await db.image.deleteMany({
@@ -303,5 +318,31 @@ export const deletProductById = async (
     console.log(error);
 
     return { isSuccess: false };
+  }
+};
+
+export const getSize = async (sizeId: string) => {
+  try {
+    const size = await db.size.findFirst({
+      where: {
+        id: sizeId,
+      },
+    });
+    return size;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getColor = async (colorId: string) => {
+  try {
+    const color = await db.color.findFirst({
+      where: {
+        id: colorId,
+      },
+    });
+    return color;
+  } catch (error) {
+    console.log(error);
   }
 };
