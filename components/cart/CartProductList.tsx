@@ -11,7 +11,7 @@ function CartProductList() {
     <div className="flex items-center justify-between flex-wrap gap-y-2  ">
       <div className=" w-full ">
         {cart.map((cartItem) => (
-          <CartProduct cartItem={cartItem} />
+          <CartProduct key={cartItem.productId} cartItem={cartItem} />
         ))}
       </div>
       <TotoalPrice />

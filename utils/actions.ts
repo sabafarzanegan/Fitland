@@ -169,7 +169,7 @@ export const createProduct = async (values: ProductType) => {
 
 export const getAllProduct = async (
   categoryFilter = "",
-  brand: string | string[]
+  brand: string | string[] = ""
 ) => {
   try {
     let query = {};

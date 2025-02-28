@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useCartStore } from "@/store/CartStore";
 import Link from "next/link";
 import Loading from "../loading/Loading";
+import Image from "next/image";
 
 interface prop {
   cartItem: {
@@ -34,7 +35,7 @@ function CartProduct({ cartItem }: prop) {
       }
     };
     getProduct();
-  }, []);
+  }, [cartItem.productId]);
 
   if (loading) {
     return <Loading />;
@@ -45,11 +46,12 @@ function CartProduct({ cartItem }: prop) {
       <div className="flex items-center justify-between border rounded-md ">
         {/* image and info */}
         <div className="flex items-center gap-x-2">
-          <div className="w-[80px] h-[80px]">
-            <img
-              src={product?.images[0].url}
+          <div className="w-[80px] h-[80px] relative">
+            <Image
+              src={product?.images[0].url as string}
               alt=""
               className="w-full h-full rounded-md"
+              fill
             />
           </div>
           <div className="space-y-4">

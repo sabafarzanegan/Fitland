@@ -1,5 +1,5 @@
 import ProductCard from "@/components/card/ProductCard";
-import Modal from "@/components/modal/Modal";
+
 import Pagination from "@/components/product/Pagination";
 import { getAllProduct } from "@/utils/actions";
 import React from "react";
@@ -23,7 +23,7 @@ async function page({
       <h1 className="mb-4">محصولات</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         {entries?.map((product) => (
-          <ProductCard edit={true} product={product} />
+          <ProductCard key={product.id} edit={true} product={product} />
         ))}
       </div>
       <Pagination
