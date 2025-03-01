@@ -81,6 +81,7 @@ function ProductCard({
           <div className=" w-24 h-10 flex items-center justify-center">
             {product.colors.map((cls) => (
               <div
+                key={cls.id}
                 style={{ backgroundColor: cls.name }}
                 className=" w-5 h-5  rounded-full"></div>
             ))}

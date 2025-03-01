@@ -1,4 +1,5 @@
 import ProfileLinks from "@/components/userProfile/ProfileLinks";
+import { getUserInfo } from "@/utils/actions";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
 import React from "react";
@@ -6,6 +7,7 @@ import React from "react";
 async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+  const userInfo = await getUserInfo(user.id);
   return (
     <div>
       <div className=" md:hidden flex flex-col items-center justify-center">
@@ -26,7 +28,7 @@ async function page() {
           </div>
         </div>
         {/* linkItems */}
-        <ProfileLinks />
+        <ProfileLinks isAdmin={userInfo?.isAdmin} />
       </div>
     </div>
   );

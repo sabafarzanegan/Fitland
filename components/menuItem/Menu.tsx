@@ -11,8 +11,8 @@ function Menu() {
             <li>محصولات</li>
           </Link>
           {menueItem.map((item) => (
-            <Link href={`/products/?brand=${item.value}`}>
-              <li key={item.id}>{item.name}</li>
+            <Link key={item.id} href={`/products/?brand=${item.value}`}>
+              <li>{item.name}</li>
             </Link>
           ))}
         </ul>

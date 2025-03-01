@@ -44,6 +44,7 @@ function ProductFeature({ product }: { product: getProduct }) {
         <div className="grid grid-cols-2 lg:grid-cols-3  gap-2">
           {product?.sizes.map((size) => (
             <div
+              key={size.id}
               onClick={() => setSelectedSize(size)}
               className={`${
                 selecedSize.id == size.id && "border-2 border-secondary-700"
@@ -59,6 +60,7 @@ function ProductFeature({ product }: { product: getProduct }) {
         <div className="flex items-cente gap-x-4">
           {product?.colors.map((cls) => (
             <div
+              key={cls.id}
               onClick={() => setSelectedColor(cls)}
               style={{ backgroundColor: cls?.hex, cursor: "pointer" }}
               className={`

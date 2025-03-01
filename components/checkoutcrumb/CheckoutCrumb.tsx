@@ -4,8 +4,9 @@ import {
   BreadcrumbItem,
   BreadcrumbList,
 } from "@/components/ui/breadcrumb/breadcrumb";
+import { Image } from "lucide-react";
 
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 function CheckoutCrumb() {
   const pathname = usePathname();
@@ -20,7 +21,7 @@ function CheckoutCrumb() {
               "border-b-2 border-b-secondary-300 pb-1"
             } 
           `}>
-            <div>
+            <div className="">
               <img src="/images/shopping-cart2.svg" alt="" />
             </div>
             <p className={`text-[12px] text-secondary-400`}>سبد خرید</p>

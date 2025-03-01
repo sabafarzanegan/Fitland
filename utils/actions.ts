@@ -2,9 +2,7 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import db from "./db";
 import { addUserType, formAddressAction, ProductType } from "./type";
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import prisma from "./db";
 
 export const checkUserIndb = async () => {
   try {
@@ -169,7 +167,7 @@ export const createProduct = async (values: ProductType) => {
 
 export const getAllProduct = async (
   categoryFilter = "",
-  brand: string | string[]
+  brand: string | string[] = ""
 ) => {
   try {
     let query = {};
@@ -181,7 +179,7 @@ export const getAllProduct = async (
     } else if (categoryFilter === "cheapest") {
       query = { orderBy: { price: "asc" } };
     }
-    // const whereCondition = brand && brand !== "" ? { categoryName: brand } : "";
+
     let whereCondition = {};
     if (brand && brand !== "") {
       whereCondition = Array.isArray(brand)
