@@ -1,4 +1,4 @@
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
+import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
 
 function page() {
   return (
