@@ -1,12 +1,16 @@
 import AddressForm from "@/components/form/AddressForm";
 import { getAddressInfo, getUserInfo } from "@/utils/actions";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 import React from "react";
 
 async function page() {
   const { getUser } = getKindeServerSession();
-  const { id } = await getUser();
-  const userInfo = await getUserInfo(id);
+  const user = await getUser();
+  if (!user) {
+    redirect("/auth/sign-in");
+  }
+  const userInfo = await getUserInfo(user?.id);
   const addres = await getAddressInfo(userInfo?.id);
   console.log(addres);
   const addressInfo = {

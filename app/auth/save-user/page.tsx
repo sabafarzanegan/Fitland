@@ -5,12 +5,17 @@ import { redirect } from "next/navigation";
 async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+  console.log(user);
 
+  if (!user) {
+    console.log("❌ کاربر لاگین نیست، هدایت به صفحه لاگین...");
+    redirect("/auth/sign-in"); // اگر لاگین نیست، به صفحه لاگین بفرستش
+  }
   const formData = {
-    clerkUserId: user.id,
-    email: user.email,
-    name: user.given_name,
-    imageUrl: user.picture,
+    clerkUserId: user?.id,
+    email: user?.email,
+    name: user?.given_name || "نام ناشناس",
+    imageUrl: user?.picture,
   };
   const finduser = await checkUserIndb();
 
@@ -19,7 +24,7 @@ async function page() {
   } else {
     const res = await addUserIndb(formData);
     console.log(res);
-    if (res.isSuccess) {
+    if (res?.isSuccess) {
       redirect("/");
     }
   }

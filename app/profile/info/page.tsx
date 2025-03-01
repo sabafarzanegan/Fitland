@@ -15,7 +15,7 @@ async function page() {
         phoneNumber: string | null;
       }
     | null
-    | undefined = await getUserInfo(user.id);
+    | undefined = await getUserInfo(user?.id);
   7;
   return (
     <div className="border rounded-[16px] border-neutral-300 p-6 ">
