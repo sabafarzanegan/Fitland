@@ -1,5 +1,5 @@
 "use client";
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import Image from "next/image";
 
 function Loginbtn() {
