@@ -34,7 +34,7 @@ function ProductCard({
   return (
     <>
       <Link href={`/products/${product.id}`}>
-        <div className=" rounded-[16px]  overflow-hidden max-w-lg max-h-[600px] h-full w-full border mx-auto ">
+        <div className=" rounded-[16px]  overflow-hidden max-w-sm max-h-[600px] h-full w-full border mx-auto ">
           {/* image product */}
           <div className=" w-full h-[280px] relative">
             <Image

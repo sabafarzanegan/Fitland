@@ -14,10 +14,7 @@ async function layout({ children }: { children: ReactNode }) {
   if (!user) {
     redirect("/auth/sign-in");
   }
-  const userInfo = await getUserInfo(user?.id);
-  if (!userInfo?.isAdmin) {
-    redirect("/");
-  }
+
   return (
     <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5">
       {/* sidebar */}

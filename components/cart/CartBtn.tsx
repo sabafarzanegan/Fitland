@@ -7,9 +7,13 @@ type props = {
   selectedProduct: {
     productId: string;
     size: string;
+    sizeId: string;
     color: string;
+    colorId: string;
     price?: number;
     discountPrice?: number | null;
+    image: string;
+    name: string;
   };
 };
 
@@ -26,9 +30,13 @@ function CartBtn({ selectedProduct }: props) {
   const cartItem = {
     productId: selectedProduct.productId,
     size: selectedProduct.size,
+    sizeId: selectedProduct.sizeId,
     color: selectedProduct.color,
+    colorId: selectedProduct.colorId,
     price: selectedProduct.price,
     discountPrice: selectedProduct.discountPrice,
+    image: selectedProduct.image,
+    name: selectedProduct.name,
     qt: 1,
   };
   return (

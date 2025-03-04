@@ -10,9 +10,13 @@ function ProductFeature({ product }: { product: getProduct }) {
   const selectedProduct = {
     productId: product.id,
     size: selecedSize.value,
+    sizeId: selecedSize.id,
     color: selectedColor.hex,
+    colorId: selectedColor.id,
     price: product.price,
     discountPrice: product.discountPrice,
+    image: product.images[0].url,
+    name: product.name,
   };
 
   return (

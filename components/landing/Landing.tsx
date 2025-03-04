@@ -33,7 +33,7 @@ function Landing() {
           </button>
         </div>
 
-        <div className="w-[130px] h-[149px] md:w-[422px] md:h-[475px] relative">
+        <div className="w-[300px] h-[300px] hidden md:block relative">
           <Image alt="" src="/images/landing.jpg" fill className="absolute" />
         </div>
       </div>

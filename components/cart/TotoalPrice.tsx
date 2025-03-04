@@ -18,7 +18,7 @@ function TotoalPrice() {
   const benefitPrice = totalPriceWithoutDiscount - totalPrice;
   const deliveriPrice = 50000;
   return (
-    <div className=" w-[392px] border  border-neutral-300 px-6 py-4 rounded-[8px] mx-auto ">
+    <div className=" border  border-neutral-300 px-6 py-4 rounded-[8px] mx-auto ">
       <div className="space-y-4 mb-4">
         {/* total price */}
         <div className="text-neutral-700 flex items-center justify-between ">
