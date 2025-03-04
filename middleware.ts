@@ -5,7 +5,6 @@ export default withAuth(
   async function middleware(req: any) {
     console.log("look at me", req.kindeAuth);
     if (!req.kindeAuth?.token) {
-      console.log("❌ کاربر لاگین نیست، هدایت به صفحه لاگین...");
       return NextResponse.redirect(new URL("/auth/sign-in", req.url));
     }
   },

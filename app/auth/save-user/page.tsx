@@ -9,7 +9,7 @@ async function page() {
 
   if (!user) {
     console.log("❌ کاربر لاگین نیست، هدایت به صفحه لاگین...");
-    redirect("/auth/sign-in"); // اگر لاگین نیست، به صفحه لاگین بفرستش
+    redirect("/auth/sign-in");
   }
   const formData = {
     clerkUserId: user?.id,

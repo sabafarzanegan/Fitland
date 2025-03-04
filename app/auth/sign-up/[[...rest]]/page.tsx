@@ -4,7 +4,7 @@ function page() {
   return (
     <div className="space-y-4 mt-6">
       <h1 className="font-bold">ثبت نام</h1>
-      <RegisterLink>Sign up</RegisterLink>
+      <RegisterLink postLoginRedirectURL="/auth/sign-in">Sign up</RegisterLink>
     </div>
   );
 }
