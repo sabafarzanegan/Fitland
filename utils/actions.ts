@@ -1,8 +1,9 @@
 "use server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import db from "./db";
-import { addUserType, formAddressAction, ProductType } from "./type";
+import { addUserType, formAddressAction, orderData, ProductType } from "./type";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const checkUserIndb = async () => {
   try {
@@ -340,6 +341,53 @@ export const getColor = async (colorId: string) => {
       },
     });
     return color;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createOrderByUser = async (orderData: orderData) => {
+  console.log(orderData);
+  try {
+    const res = await db.order.create({
+      data: {
+        userId: orderData.userId as string,
+        addressId: orderData.addressId as string,
+        totalPrice: orderData.totalPrice,
+        orderItems: {
+          create: orderData.orderItems.map((item) => {
+            return {
+              product: {
+                connect: { id: item.productId },
+              },
+              size: {
+                connect: { id: item.sizeId },
+              },
+              color: {
+                connect: { id: item.colorId },
+              },
+              quantity: item.quantity,
+              price: item.price as number,
+            };
+          }),
+        },
+      },
+    });
+    return { success: true };
+  } catch (error) {
+    console.log(error);
+    return { success: false };
+  }
+};
+
+export const getOrder = async (userId: string | undefined) => {
+  try {
+    const res = await db.order.findFirst({
+      where: {
+        userId,
+      },
+    });
+    return res;
   } catch (error) {
     console.log(error);
   }

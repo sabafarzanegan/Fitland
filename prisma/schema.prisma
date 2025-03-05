@@ -26,7 +26,8 @@ model User {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   address     Address? @relation(fields: [addressId], references: [id])
-  addressId   String?  @unique   
+  addressId   String?  @unique 
+  orders      Order[]  
 }
 
 
@@ -39,6 +40,7 @@ model Address {
   number   String
   unit     String
   reciving String
+   orders    Order[]
   phonenum  String
   user    User?  @relation() 
 
@@ -54,7 +56,8 @@ model Product {
   sizes         Size[]  
   colors        Color[]  
   price         Float
-  discountPrice Float?  
+  discountPrice Float? 
+  orderItems    OrderItem[] 
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
@@ -75,6 +78,9 @@ model Size {
   value     String  
   product   Product @relation(fields: [productId], references: [id] ,onDelete: Cascade)
   productId String
+    orderItems    OrderItem[]
+
+
 }
 
 model Color {
@@ -83,4 +89,40 @@ model Color {
   hex       String  
   product   Product @relation(fields: [productId], references: [id] ,onDelete: Cascade)
   productId String
+    orderItems    OrderItem[]
+}
+
+
+model Order {
+  id            String   @id @default(cuid()) 
+  user          User     @relation(fields: [userId], references: [id])
+  userId        String  
+  address       Address  @relation(fields: [addressId], references: [id])
+  addressId     String  
+  totalPrice    Float  
+  status        OrderStatus @default(PENDING)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  orderItems    OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(cuid()) 
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String  
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String  
+  size      Size     @relation(fields: [sizeId], references: [id])
+  sizeId    String  
+  color     Color    @relation(fields: [colorId], references: [id])
+  colorId   String  
+  quantity  Int      @default(1)
+  price     Float  
+}
+
+enum OrderStatus {
+  PENDING
+  SHIPPED
+  DELIVERED
+  CANCELED
 }

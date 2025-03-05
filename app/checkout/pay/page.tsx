@@ -9,6 +9,7 @@ async function page() {
   const user = await getUser();
   const userInfo = await getUserInfo(user?.id);
   const addres = await getAddressInfo(userInfo?.id);
+
   return (
     <div className="flex items-start justify-between flex-wrap">
       {/* info */}
@@ -31,7 +32,7 @@ async function page() {
       </div>
       {/* link */}
       <div>
-        <Totalpayment />
+        <Totalpayment addressId={addres?.id} userId={userInfo?.id} />
       </div>
     </div>
   );

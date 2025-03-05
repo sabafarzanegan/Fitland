@@ -67,3 +67,20 @@ export type getProduct = {
   sizes: { id: string; value: string; productId: string }[];
   colors: { id: string; name: string; hex: string; productId: string }[];
 };
+
+interface orderItem {
+  productId: string;
+  size: string;
+  sizeId: string;
+  color: string;
+  colorId: string;
+  quantity: number;
+  price: number | undefined;
+}
+
+export type orderData = {
+  userId: string | undefined;
+  addressId: string | undefined;
+  totalPrice: number;
+  orderItems: orderItem[];
+};
