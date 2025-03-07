@@ -31,6 +31,7 @@ function ImageUploader() {
   };
 
   const watchImage = useWatch({ name: "images" });
+  console.log(watchImage);
 
   useEffect(() => {
     if (watchImage) {
@@ -38,8 +39,10 @@ function ImageUploader() {
         (img: { id: string; url: string }) => img.url
       );
       setPreviewUrls(urls);
+      setImages(urls);
     }
   }, [watchImage]);
+  console.log(images);
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Input } from "../ui/Input/Input";
 import { categoryItems } from "@/assets/helper/helper";
 import ColorSelect from "./ColorSelect";
@@ -13,8 +13,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createProduct } from "@/utils/actions";
 import { Loader2 } from "lucide-react";
 import { toast, Toaster } from "sonner";
+import { revalidatePath } from "next/cache";
+import { redirect, useRouter } from "next/navigation";
 
 function ProductForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formproductSchema>>({
     resolver: zodResolver(formproductSchema),
     defaultValues: {
@@ -34,10 +37,14 @@ function ProductForm() {
     if (res.isSuccess) {
       toast.success("محصول با موفقیت  ساخته شد");
       form.reset();
+      router.back();
     } else {
       toast.error("خطا!دوباره تلاش کنید");
     }
   };
+  useEffect(() => {
+    router.prefetch("/dashboard/products");
+  }, [router]);
   return (
     <div>
       <FormProvider {...form}>

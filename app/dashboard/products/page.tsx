@@ -1,9 +1,6 @@
-import ProductCard from "@/components/card/ProductCard";
-
 import Pagination from "@/components/product/Pagination";
+import TableProducts from "@/components/table/TableProducts";
 import { getAllProduct } from "@/utils/actions";
-import React from "react";
-
 async function page({
   searchParams,
 }: {
@@ -13,7 +10,7 @@ async function page({
 }) {
   const products = await getAllProduct();
   const page = searchParams["page"] ?? "1";
-  const per_page = searchParams["per_page"] ?? "2";
+  const per_page = searchParams["per_page"] ?? "5";
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);
 
@@ -21,11 +18,7 @@ async function page({
   return (
     <div>
       <h1 className="mb-4">محصولات</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {entries?.map((product) => (
-          <ProductCard key={product.id} edit={true} product={product} />
-        ))}
-      </div>
+      <TableProducts entries={entries} />
       <Pagination
         hasNextPage={end < (products?.length || 0)}
         hasPrevPage={start > 0}

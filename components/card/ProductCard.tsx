@@ -1,13 +1,9 @@
 "use client";
 import { calcDiscount } from "@/utils/lib";
 import { getProduct } from "@/utils/type";
-import { Edit, Loader, Star, Trash } from "lucide-react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-import { deletProductById } from "@/utils/actions";
-import { toast, Toaster } from "sonner";
-import { useState } from "react";
 
 function ProductCard({
   product,
@@ -16,21 +12,6 @@ function ProductCard({
   product: getProduct;
   edit: boolean;
 }) {
-  const [isLoading, setIsLoading] = useState(false);
-  const deletProducthandler = async (id: string) => {
-    setIsLoading(true);
-    try {
-      const res = await deletProductById(id);
-      if (res.isSuccess) {
-        toast.success("محصول با موفقیت حدف شد");
-      }
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-    } finally {
-      setIsLoading(false);
-    }
-  };
   return (
     <>
       <Link href={`/products/${product.id}`}>
@@ -62,10 +43,17 @@ function ProductCard({
               )}
             </div>
             <div className="flex items-center gap-x-1">
-              <p className="text-body-5">
-                {product.discountPrice?.toLocaleString("fa-IR")} تومان
-              </p>
-              <span className="text-neutral-500 line-through text-[14px]">
+              {(product.discountPrice as number) > 0 && (
+                <p className="text-body-5">
+                  {product.discountPrice?.toLocaleString("fa-IR")} تومان
+                </p>
+              )}
+
+              <span
+                className={` ${
+                  (product.discountPrice as number) > 0 &&
+                  "line-through text-neutral-500 text-[14px]"
+                }  `}>
                 {product.price.toLocaleString("fa-IR")} تومان
               </span>
             </div>
@@ -86,29 +74,7 @@ function ProductCard({
                 className=" w-5 h-5  rounded-full"></div>
             ))}
           </div>
-          <div>
-            {edit && (
-              <div className="flex items-center px-3 py-2 justify-between">
-                <Link href={`/dashboard/products/edit/${product.id}`}>
-                  <button className="p-2 bg-white transition-all duration-100 hover:bg-secondary-300 hover:text-white rounded-sm">
-                    <Edit className="w-5 h-5" />
-                  </button>
-                </Link>
-
-                <button
-                  disabled={isLoading}
-                  onClick={() => deletProducthandler(product.id)}
-                  className="p-2 bg-white transition-all duration-100 hover:bg-cinnabar-500 hover:text-white rounded-sm">
-                  {isLoading ? (
-                    <Loader className="animate-spin" />
-                  ) : (
-                    <Trash className="w-5 h-5" />
-                  )}
-                </button>
-              </div>
-            )}
-          </div>
-          <Toaster />
+          <div></div>
         </div>
       </Link>
     </>
