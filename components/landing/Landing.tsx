@@ -4,7 +4,7 @@ function Landing() {
   return (
     <div className="mt-[48px] flex items-start justify-between">
       <div className=" flex items-start">
-        <div className="space-y-4">
+        <div className="space-y-4 mx-auto">
           <p className=" font-semibold text-neutral-600">
             راحت و مطمئن خرید کنید!
           </p>

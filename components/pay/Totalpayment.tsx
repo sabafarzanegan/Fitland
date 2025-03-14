@@ -15,7 +15,11 @@ function Totalpayment({ addressId, userId }: props) {
   const [isLoading, setIsLoading] = useState(false);
   const { cart, clearCart } = useCartStore((state) => state);
   const totalPrice = cart.reduce((acc, cur) => {
-    const curTotal = (cur.discountPrice ?? (cur.price as number)) * cur.qt;
+    const curTotal =
+      ((cur.discountPrice as number) > 0
+        ? cur.discountPrice
+        : (cur.price as number)) || 0 * cur.qt;
+
     return acc + curTotal;
   }, 0);
 

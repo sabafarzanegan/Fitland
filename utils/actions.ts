@@ -131,7 +131,18 @@ export const getAddressInfo = async (userId: string | undefined) => {
     console.log(error);
   }
 };
-
+export const getAddressById = async (id: string) => {
+  try {
+    const address = await db.address.findFirst({
+      where: {
+        id,
+      },
+    });
+    return address;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const createProduct = async (values: ProductType) => {
   try {
     const newProduct = await db.product.create({
@@ -388,6 +399,72 @@ export const getOrder = async (userId: string | undefined) => {
       },
     });
     return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOrderByUser = async (userId: string | undefined) => {
+  try {
+    const res = await db.order.findFirst({
+      where: {
+        userId,
+      },
+      include: {
+        orderItems: true,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const AllOrders = async () => {
+  try {
+    const res = await db.order.findMany({
+      include: {
+        orderItems: true,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getOrderById = async (id: string) => {
+  try {
+    const res = await db.order.findFirst({
+      where: {
+        id,
+      },
+      include: {
+        orderItems: true,
+      },
+    });
+    console.log(res);
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const changeOrderStatus = async (
+  orderId: string,
+  status: "PENDING" | "SHIPPED" | "DELIVERED" | "CANCELED" | undefined
+) => {
+  try {
+    const res = await db.order.update({
+      where: {
+        id: orderId,
+      },
+      data: {
+        status,
+      },
+    });
+    revalidatePath(`/dashboard/manage/${orderId}`);
+    return { success: true };
   } catch (error) {
     console.log(error);
   }

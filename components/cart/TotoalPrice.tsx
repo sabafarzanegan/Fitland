@@ -7,7 +7,11 @@ function TotoalPrice() {
   const cart = useCartStore((state) => state.cart);
 
   const totalPrice = cart.reduce((acc, cur) => {
-    const curTotal = (cur.discountPrice ?? (cur.price as number)) * cur.qt;
+    const curTotal =
+      ((cur.discountPrice as number) > 0
+        ? cur.discountPrice
+        : (cur.price as number)) || 0 * cur.qt;
+
     return acc + curTotal;
   }, 0);
 
@@ -15,6 +19,7 @@ function TotoalPrice() {
     const price = (cur.price as number) * cur.qt;
     return acc + price;
   }, 0);
+
   const benefitPrice = totalPriceWithoutDiscount - totalPrice;
   const deliveriPrice = 50000;
   return (
@@ -45,9 +50,11 @@ function TotoalPrice() {
           </p>
         </div>
       </div>
-      <button className="w-full mx-auto bg-primary-main text-white h-[48px] rounded-[8px]">
-        <Link href="/checkout/location">تکمیل فرآیند پرداخت</Link>
-      </button>
+      <Link href="/checkout/location">
+        <button className="w-full mx-auto bg-primary-main text-white h-[48px] rounded-[8px]">
+          تکمیل فرآیند پرداخت
+        </button>
+      </Link>
     </div>
   );
 }

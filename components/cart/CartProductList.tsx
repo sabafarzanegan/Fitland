@@ -11,7 +11,7 @@ function CartProductList() {
     return (
       <div className="h-[500px] flex items-center justify-center">
         <div className="flex flex-col items-center justify-center gap-y-2">
-          <div className="relative w-[400px] h-[400px]">
+          <div className="relative w-[300px] h-[300px]">
             <Image src="/images/image 27.png" fill alt="" />
           </div>
           <p>سبد خرید شما خالی است</p>

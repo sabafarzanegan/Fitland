@@ -69,18 +69,24 @@ export type getProduct = {
 };
 
 interface orderItem {
+  id?: string;
+  orderId?: string;
   productId: string;
-  size: string;
+  size?: string;
   sizeId: string;
-  color: string;
+  color?: string;
   colorId: string;
   quantity: number;
   price: number | undefined;
 }
 
 export type orderData = {
+  id?: string;
   userId: string | undefined;
   addressId: string | undefined;
   totalPrice: number;
+  status?: string;
   orderItems: orderItem[];
+  createdAt?: Date;
+  updatedAt?: Date;
 };

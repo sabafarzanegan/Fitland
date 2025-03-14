@@ -26,7 +26,7 @@ async function Header() {
               <Image src="/images/user-2.svg" alt="" fill />
             </div>
           </Link>
-          <Link href="/cart">
+          <Link href="/checkout/cart">
             <div className="relative w-6 h-6 ">
               <Image src="/images/bag-1.svg" alt="" fill />
             </div>

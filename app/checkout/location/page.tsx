@@ -40,13 +40,13 @@ async function page() {
             در انتخاب آدرس و همچنین انتخاب روز ارسال دقت فرمایید
           </p>
         </div>
-        <button
-          disabled={!addressInfo}
-          className="bg-primary-main text-white mx-auto w-full py-3  rounded-[8px] disabled:bg-primary-850 disabled:opacity-60">
-          <Link href="/checkout/pay" className="w-full">
+        <Link href="/checkout/pay" className="w-full">
+          <button
+            disabled={!addressInfo}
+            className="bg-primary-main text-white mx-auto w-full py-3  rounded-[8px] disabled:bg-primary-850 disabled:opacity-60">
             تکمیل فرآیند پرداخت
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
     </div>
   );

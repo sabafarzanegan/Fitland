@@ -45,10 +45,18 @@ function TableProducts({ entries }: { entries: getProduct[] | undefined }) {
         <TableBody>
           {entries?.map((item) => (
             <TableRow className="mb-3">
-              <TableCell className="w-[60px] h-[60px] relative">
-                <Image src={item.images[0].url} alt="" fill />
+              <TableCell className="w-[20%] h-[20%]">
+                <Image
+                  src={item.images[0].url}
+                  alt=""
+                  width={100}
+                  height={100}
+                  className="w-[100%] h-[100%]"
+                />
               </TableCell>
-              <TableCell>{item.name}</TableCell>
+              <TableCell className="line-clamp-2 text-[12px] md:text-md">
+                {item.name}
+              </TableCell>
               <TableCell>{item.price.toLocaleString("fa-IR")} تومان</TableCell>
               <TableCell>
                 {item.discountPrice?.toLocaleString("fa-IR")}تومان

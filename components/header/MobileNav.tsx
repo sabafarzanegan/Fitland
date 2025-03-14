@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+
 import { useState } from "react";
 import { Menu, Plus } from "lucide-react";
 import { menueItem } from "@/assets/helper/helper";

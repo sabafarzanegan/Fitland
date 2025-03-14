@@ -18,6 +18,7 @@ function ProductFeature({ product }: { product: getProduct }) {
     image: product.images[0].url,
     name: product.name,
   };
+  console.log(product);
 
   return (
     <div className="mt-[21px]">
@@ -28,12 +29,20 @@ function ProductFeature({ product }: { product: getProduct }) {
       </div>
       {/* price  */}
       <div className="space-y-[20px]">
-        <p className="text-secondary-main text-[24px] lg:text-[32px] font-bold">
-          {product?.discountPrice?.toLocaleString("fa-IR")}تومان
-        </p>
+        {(product.discountPrice as number) > 0 && (
+          <p className="text-secondary-main text-[24px] lg:text-[32px] font-bold">
+            {product?.discountPrice?.toLocaleString("fa-IR")}تومان
+          </p>
+        )}
+
         <div className="flex items-center gap-x-[40px]">
-          <p className="text-neutral-400 text-[18px] lg:text-[24px] line-through">
-            {product?.price.toLocaleString("fa-IR")}
+          <p
+            className={`text-secondary-main font-bold  ${
+              (product.discountPrice as number) > 0
+                ? "line-through text-neutral-400 font-normal text-[18px] lg:text-[24px]"
+                : ""
+            } `}>
+            {product?.price.toLocaleString("fa-IR")}تومان
           </p>
           <div className="w-[62px] h-[36px] rounded-[8px] bg-primary-main text-white flex items-center justify-center">
             <span>

@@ -62,7 +62,7 @@ function CartProduct({ cartItem }: prop) {
             </div>
             <div className="pl-2">
               <p className="text-secondary-main place-items-end">
-                {(cartItem.discountPrice || 0 > 0
+                {((cartItem.discountPrice as number) > 0
                   ? cartItem.discountPrice
                   : cartItem.price
                 )?.toLocaleString("fa-IR")}

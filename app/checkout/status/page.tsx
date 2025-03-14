@@ -41,7 +41,7 @@ async function page() {
             <Link href="/">صفحه اصلی</Link>
           </button>
           <button className="p-2 border border-secondary-main text-secondary-400 rounded-[8px] w-full">
-            <Link href="/profile/order">پیگیری</Link>
+            <Link href="/profile/orders">پیگیری</Link>
           </button>
         </div>
       </div>
