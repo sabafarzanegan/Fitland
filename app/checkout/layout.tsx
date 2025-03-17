@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 
 async function layout({ children }: { children: ReactNode }) {
   return (
-    <div className="">
+    <div className="container">
       <div className="my-4">
         <CheckoutCrumb />
       </div>

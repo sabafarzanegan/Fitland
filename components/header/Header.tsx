@@ -15,7 +15,7 @@ async function Header() {
 
   return (
     <>
-      <div className="flex items-center justify-between gap-x-10 mt-10 ">
+      <div className="flex items-center justify-between gap-x-10 mt-10 container ">
         <div className="md:hidden">
           <MobileNav />
         </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../ui/Input/Input";
 import { categoryItems } from "@/assets/helper/helper";
 import ColorSelect from "./ColorSelect";
@@ -16,7 +16,16 @@ import { toast, Toaster } from "sonner";
 import { revalidatePath } from "next/cache";
 import { redirect, useRouter } from "next/navigation";
 
-function ProductForm() {
+function ProductForm({
+  categories,
+}: {
+  categories: { id: string; name: string }[] | undefined;
+}) {
+  const [selectedCategories, setSelectedCategories] = useState<
+    { id: string; name: string }[]
+  >([]);
+  console.log(selectedCategories);
+
   const router = useRouter();
   const form = useForm<z.infer<typeof formproductSchema>>({
     resolver: zodResolver(formproductSchema),
@@ -32,12 +41,12 @@ function ProductForm() {
     },
   });
   const onSubmit = async (values: z.infer<typeof formproductSchema>) => {
-    const res = await createProduct(values);
+    const res = await createProduct(values, selectedCategories);
 
     if (res.isSuccess) {
       toast.success("محصول با موفقیت  ساخته شد");
       form.reset();
-      router.back();
+      router.push("/dashboard/products");
     } else {
       toast.error("خطا!دوباره تلاش کنید");
     }
@@ -45,6 +54,13 @@ function ProductForm() {
   useEffect(() => {
     router.prefetch("/dashboard/products");
   }, [router]);
+  const handleCategoryChange = (category: { id: string; name: string }) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((id) => id.id !== category.id)
+        : [...prev, category]
+    );
+  };
   return (
     <div>
       <FormProvider {...form}>
@@ -116,6 +132,28 @@ function ProductForm() {
           </div>
           <div className="mt-4">
             <ImageUploader />
+          </div>
+          <div className="mt-4 ">
+            <h3>دسته بندی ها</h3>
+            <div className="flex items-center justify-between flex-wrap py-2">
+              {categories?.map((item) => (
+                <>
+                  <fieldset className="">
+                    <div className="flex items-center gap-x-2">
+                      <input
+                        checked={selectedCategories.includes(item)}
+                        onChange={() => handleCategoryChange(item)}
+                        className="accent-primary-main"
+                        type="checkbox"
+                        id={item.name}
+                        name={item.name}
+                      />
+                      <label htmlFor={item.name}>{item.name}</label>
+                    </div>
+                  </fieldset>
+                </>
+              ))}
+            </div>
           </div>
           <div className="mt-4 w-full">
             <textarea

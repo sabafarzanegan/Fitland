@@ -10,8 +10,9 @@ export const metadata: Metadata = {
 };
 
 const vazir = Vazirmatn({
-  subsets: ["arabic"],
+  subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -24,7 +25,7 @@ export default function RootLayout({
       <body className={`${vazir.className}`}>
         <Ad />
 
-        <main className="container  ">
+        <main className=" mx-auto">
           <Header />
           {children}
         </main>

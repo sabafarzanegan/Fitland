@@ -10,7 +10,7 @@ async function layout({ children }: { children: ReactNode }) {
   const user = await getUser();
   const userInfo = await getUserInfo(user?.id);
   return (
-    <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5">
+    <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5 container">
       {/* sidebar */}
       <div className="hidden md:block">
         {/* top side */}

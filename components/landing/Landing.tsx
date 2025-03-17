@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 function Landing() {
   return (
@@ -27,9 +28,11 @@ function Landing() {
                 alt=""
               />
             </span>
-            <p className=" text-neutral-100 font-bold  text-caption-3 ">
-              مشاهده محصولات
-            </p>
+            <Link href="/products">
+              <p className=" text-neutral-100 font-bold  text-caption-3 ">
+                مشاهده محصولات
+              </p>
+            </Link>
           </button>
         </div>
 

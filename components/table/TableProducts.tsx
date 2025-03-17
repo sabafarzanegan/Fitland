@@ -54,7 +54,7 @@ function TableProducts({ entries }: { entries: getProduct[] | undefined }) {
                   className="w-[100%] h-[100%]"
                 />
               </TableCell>
-              <TableCell className="line-clamp-2 text-[12px] md:text-md">
+              <TableCell className="text-[12px] md:text-md">
                 {item.name}
               </TableCell>
               <TableCell>{item.price.toLocaleString("fa-IR")} تومان</TableCell>

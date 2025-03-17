@@ -61,6 +61,7 @@ export type getProduct = {
   description: string;
   price: number;
   discountPrice: number | null;
+  categories?: { id: string; name: string }[];
   createdAt: Date;
   updatedAt: Date;
   images: { id: string; url: string; productId: string }[];

@@ -1,5 +1,5 @@
 import { link } from "fs";
-import { FolderKanban, Plus, Tickets } from "lucide-react";
+import { FolderKanban, Plus, Tickets, ChartBarStacked } from "lucide-react";
 
 export const menueItem = [
   { id: 1, name: "مردانه", value: "mens" },
@@ -61,10 +61,16 @@ export const AdminLink = [
     link: "/dashboard/add-product",
   },
   {
-    id: 2,
+    id: 3,
     name: "مدیریت محصولات",
     icon: Tickets,
     link: "/dashboard/manage",
+  },
+  {
+    id: 4,
+    name: "مدیریت دسته بندی",
+    icon: ChartBarStacked,
+    link: "/dashboard/category",
   },
 ];
 

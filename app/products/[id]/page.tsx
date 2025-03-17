@@ -9,7 +9,7 @@ async function page({ params }: { params: { id: string | undefined } }) {
   const product = await getProductById(params.id as string);
   const OPTIONS: EmblaOptionsType = {};
   return (
-    <div className="mt-[53px]">
+    <div className="mt-[53px] container">
       <div className="flex items-start gap-x-6 flex-wrap md:flex-nowrap">
         <EmblaCarousel slides={product?.images} options={OPTIONS} />
         <div>

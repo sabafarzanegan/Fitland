@@ -143,7 +143,10 @@ export const getAddressById = async (id: string) => {
     console.log(error);
   }
 };
-export const createProduct = async (values: ProductType) => {
+export const createProduct = async (
+  values: ProductType,
+  selectedcategories: { id: string; name: string }[]
+) => {
   try {
     const newProduct = await db.product.create({
       data: {
@@ -152,6 +155,13 @@ export const createProduct = async (values: ProductType) => {
         price: Number(values.price),
         discountPrice: Number(values.discountPrice),
         description: values.description,
+        categories: {
+          connect: selectedcategories.map((category) => ({
+            id: category.id,
+            name: category.name,
+          })),
+        },
+
         images: {
           create: values.images.map((image: { url: string }) => ({
             url: image.url,
@@ -225,6 +235,7 @@ export const getProductById = async (id: string) => {
         images: true,
         colors: true,
         sizes: true,
+        categories: true,
       },
     });
 
@@ -249,7 +260,11 @@ export const getProductForCart = async (productId: string) => {
   } catch (error) {}
 };
 
-export const updateProductById = async (id: string, formdata: ProductType) => {
+export const updateProductById = async (
+  id: string,
+  formdata: ProductType,
+  selectedCategories: { id: string; name: string }[] | undefined
+) => {
   try {
     await db.image.deleteMany({
       where: {
@@ -278,7 +293,12 @@ export const updateProductById = async (id: string, formdata: ProductType) => {
         categoryName: formdata.category,
         price: Number(formdata.price),
         discountPrice: Number(formdata.discountPrice),
-
+        categories: {
+          connect: selectedCategories?.map((category) => ({
+            id: category.id,
+            name: category.name,
+          })),
+        },
         images: {
           create: formdata.images.map((image: { url: string }) => ({
             url: image.url,
@@ -406,12 +426,13 @@ export const getOrder = async (userId: string | undefined) => {
 
 export const getOrderByUser = async (userId: string | undefined) => {
   try {
-    const res = await db.order.findFirst({
+    const res = await db.user.findFirst({
       where: {
-        userId,
+        id: userId,
       },
+
       include: {
-        orderItems: true,
+        orders: true,
       },
     });
     return res;
@@ -420,6 +441,20 @@ export const getOrderByUser = async (userId: string | undefined) => {
   }
 };
 
+export const findOrder = async (id: string) => {
+  try {
+    const res = await db.order.findFirst({
+      where: {
+        id,
+      },
+      include: {
+        orderItems: true,
+      },
+    });
+    return res;
+  } catch (error) {}
+};
+0;
 export const AllOrders = async () => {
   try {
     const res = await db.order.findMany({
@@ -465,6 +500,42 @@ export const changeOrderStatus = async (
     });
     revalidatePath(`/dashboard/manage/${orderId}`);
     return { success: true };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addCategory = async (formdata: FormData) => {
+  const category = formdata.get("category") as string;
+  try {
+    const res = await db.category.create({
+      data: {
+        name: category,
+      },
+    });
+    revalidatePath("/dashboard/category");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCategories = async () => {
+  try {
+    const res = await db.category.findMany();
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deletCategory = async (categoryId: string) => {
+  try {
+    const res = await db.category.delete({
+      where: {
+        id: categoryId,
+      },
+    });
+    revalidatePath("/dashboard/category");
   } catch (error) {
     console.log(error);
   }

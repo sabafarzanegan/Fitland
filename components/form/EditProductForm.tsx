@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "../ui/Input/Input";
 import { categoryItems } from "@/assets/helper/helper";
 import ColorSelect from "./ColorSelect";
@@ -13,13 +13,19 @@ import { updateProductById } from "@/utils/actions";
 import { Loader2 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { getProduct } from "@/utils/type";
-import { redirect } from "next/navigation";
 
 function EditProductForm({
   product,
+  categories,
 }: {
   product: getProduct | undefined | null;
+  categories: { id: string; name: string }[] | undefined;
 }) {
+  const [selectedCategories, setSelectedCategories] = useState<
+    { id: string; name: string }[] | undefined
+  >(product?.categories || []);
+  console.log(selectedCategories);
+
   const form = useForm<z.infer<typeof formproductSchema>>({
     resolver: zodResolver(formproductSchema),
     defaultValues: {
@@ -31,17 +37,31 @@ function EditProductForm({
       colors: product?.colors || [],
       price: product?.price.toString(),
       discountPrice: product?.discountPrice?.toString(),
+      categories: product?.categories,
     },
   });
   const onSubmit = async (values: z.infer<typeof formproductSchema>) => {
     console.log(values);
-    const res = await updateProductById(product?.id as string, values);
+    const res = await updateProductById(
+      product?.id as string,
+      values,
+      selectedCategories
+    );
 
     if (res.isSuccess) {
       toast.success("محصول با تغییر کرد");
     } else {
       toast.error("خطا!دوباره تلاش کنید");
     }
+  };
+  const handleCategoryChange = (category: { id: string; name: string }) => {
+    setSelectedCategories((prev) => {
+      if (prev?.some((item) => item.id === category.id)) {
+        return prev.filter((item) => item.id !== category.id);
+      } else {
+        return [...(prev || []), category];
+      }
+    });
   };
   return (
     <div>
@@ -115,10 +135,40 @@ function EditProductForm({
           <div className="mt-4">
             <ImageUploader />
           </div>
+          <div className="mt-4 ">
+            <h3>دسته بندی ها</h3>
+            <div className="flex items-center justify-between flex-wrap py-2">
+              {categories?.map((item) => {
+                console.log(
+                  product?.categories?.some((cate) => cate.id == item.id)
+                );
+
+                return (
+                  <>
+                    <fieldset className="">
+                      <div className="flex items-center gap-x-2">
+                        <input
+                          checked={selectedCategories?.some(
+                            (category) => category.id === item.id
+                          )}
+                          onChange={() => handleCategoryChange(item)}
+                          className="accent-primary-main"
+                          type="checkbox"
+                          id={item.name}
+                          name={item.name}
+                        />
+                        <label htmlFor={item.name}>{item.name}</label>
+                      </div>
+                    </fieldset>
+                  </>
+                );
+              })}
+            </div>
+          </div>
           <div className="mt-4 w-full">
             <textarea
               {...form.register("description")}
-              className="border border-neutral-400 rounded-[16px] w-full focus:ring-1 focus:ring-neutral-400 focus:outline-none  h-full pr-4 pt-4 text-[16px]"
+              className="border border-neutral-400 rounded-[16px] w-full min-h-3.5 focus:ring-1 focus:ring-neutral-400 focus:outline-none  h-full pr-4 pt-4 text-[16px]"
             />
             {form.formState.errors.description && (
               <p className="text-red-500 text-sm">

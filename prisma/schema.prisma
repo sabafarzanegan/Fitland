@@ -40,7 +40,7 @@ model Address {
   number   String
   unit     String
   reciving String
-   orders    Order[]
+  orders    Order[]
   phonenum  String
   user    User?  @relation() 
 
@@ -54,7 +54,8 @@ model Product {
   description   String 
   images        Image[] 
   sizes         Size[]  
-  colors        Color[]  
+  colors        Color[] 
+  categories    Category[] @relation("ProductCategories") 
   price         Float
   discountPrice Float? 
   orderItems    OrderItem[] 
@@ -62,9 +63,13 @@ model Product {
   updatedAt     DateTime @updatedAt
 }
 
+
+
 model Category {
   id   String  @id @default(uuid())
   name String  @unique  
+  products Product[] @relation("ProductCategories")
+  
 }
 model Image {
   id        String  @id @default(uuid())

@@ -16,10 +16,10 @@ async function page({
   const brandfilter = searchParams.brand || "";
 
   const page = searchParams["page"] ?? "1";
-  const per_page = searchParams["per_page"] ?? "2";
+  const per_page = searchParams["per_page"] ?? "5";
 
   return (
-    <section>
+    <section className="container">
       <h1 className="my-10 text-xl font-semibold">محصولات</h1>
       <div className="flex items-center justify-between mb-6">
         <Filterbtn />

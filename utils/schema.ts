@@ -18,7 +18,14 @@ export const formproductSchema = z.object({
   name: z.string().min(1, "نام محصول را وارد کنید"),
   category: z.string().min(1, "دسته بندی را انتخاب کنید"),
   description: z.string().min(2, "حداقل باید دو کلمه باشد"),
-
+  categories: z
+    .array(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+      })
+    )
+    .optional(),
   images: z
     .array(
       z.object({
