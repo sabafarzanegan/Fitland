@@ -1,3 +1,6 @@
+import BrandCart from "@/components/card/BrandCart";
+import Branding from "@/components/hoom/Branding";
+import SalesSection from "@/components/hoom/slaes/SalesSection";
 import Landing from "@/components/landing/Landing";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +11,9 @@ function page() {
       <div className="container">
         <Landing />
       </div>
+      {/* brand1 */}
+      <Branding />
+      {/* poster1 */}
       <div className="hero-pink mt-20 text-secondary-900">
         <div className="container pt-[159px] pr-[148px]">
           <p>برای حال خوب</p>
@@ -28,6 +34,10 @@ function page() {
             </button>
           </Link>
         </div>
+      </div>
+      {/* sales */}
+      <div className="bg-[#FFF7F4]">
+        <SalesSection />
       </div>
     </div>
   );
