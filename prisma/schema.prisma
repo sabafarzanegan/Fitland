@@ -25,6 +25,8 @@ model User {
   isAdmin        Boolean  @default(false)     
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+   comments Comment[]
+
   address     Address? @relation(fields: [addressId], references: [id])
   addressId   String?  @unique 
   orders      Order[]  
@@ -58,6 +60,8 @@ model Product {
   categories    Category[] @relation("ProductCategories") 
   price         Float
   discountPrice Float? 
+  comments Comment[]
+
   orderItems    OrderItem[] 
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
@@ -83,7 +87,7 @@ model Size {
   value     String  
   product   Product @relation(fields: [productId], references: [id] ,onDelete: Cascade)
   productId String
-    orderItems    OrderItem[]
+  orderItems    OrderItem[]
 
 
 }
@@ -94,7 +98,7 @@ model Color {
   hex       String  
   product   Product @relation(fields: [productId], references: [id] ,onDelete: Cascade)
   productId String
-    orderItems    OrderItem[]
+  orderItems    OrderItem[]
 }
 
 
@@ -130,4 +134,15 @@ enum OrderStatus {
   SHIPPED
   DELIVERED
   CANCELED
+}
+
+model Comment {
+  id        String   @id @default(cuid()) 
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String  
+  product   Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String?  
+  content   String  
+  score     Int
+  createdAt DateTime @default(now())
 }

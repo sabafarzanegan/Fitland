@@ -13,9 +13,7 @@ async function page() {
     redirect("/auth/sign-in");
   }
   const userInfo = await getUserInfo(user?.id);
-  if (!userInfo?.isAdmin) {
-    redirect("/");
-  }
+
   return (
     <div>
       <div className=" md:hidden flex flex-col items-center justify-center">

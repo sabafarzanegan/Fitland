@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Menu() {
   return (
-    <div className="mt-[38px] hidden md:block bg-neutral-100 py-5 px-10 rounded-[16px]">
+    <div className="mt-[38px] hidden md:block bg-neutral-100 py-5 px-10 rounded-[16px] container">
       <div className="flex items-center justify-between gap-x-4">
         <ul className="flex items-center gap-x-6 lg:gap-x-10 text-[0.65rem] lg:text-[0.82rem] xl:text-[1rem] font-bold text-neutral-800">
           <Link href="/products">

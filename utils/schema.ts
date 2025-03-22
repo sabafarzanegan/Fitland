@@ -53,3 +53,9 @@ export const formproductSchema = z.object({
   price: z.string().min(1, "مقدار مثبت را وارد کنید"),
   discountPrice: z.string().min(1, "مقدار مثبت وارد کنید"),
 });
+
+export const commentSchema = z.object({
+  userId: z.string(),
+  productId: z.string(),
+  content: z.string().min(1, "نظر خود را بنویسید"),
+});

@@ -58,12 +58,16 @@ function ProductCard({
               </span>
             </div>
             <div>
-              <p className="text-body-6">
-                <span className="px-1">از سایز </span>{" "}
-                {`${product.sizes[0].value}تا سایز${
-                  product.sizes[product.sizes.length - 1].value
-                }`}
-              </p>
+              {product.sizes.length > 1 ? (
+                <p className="text-body-6">
+                  <span className="px-1">از سایز </span>{" "}
+                  {`${product.sizes[0].value}تا سایز${
+                    product.sizes[product.sizes.length - 1].value
+                  }`}
+                </p>
+              ) : (
+                <p>{`سایز ${product.sizes[0].value}`}</p>
+              )}
             </div>
           </div>
           <div className=" w-24 h-10 flex items-center justify-center">

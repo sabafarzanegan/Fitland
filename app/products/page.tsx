@@ -19,12 +19,12 @@ async function page({
   const per_page = searchParams["per_page"] ?? "5";
 
   return (
-    <section className="container">
+    <section className="container ">
       <h1 className="my-10 text-xl font-semibold">محصولات</h1>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-14">
         <Filterbtn />
       </div>
-      <div>
+      <div className="flex items-start justify-between gap-x-6 ">
         <div>
           <Suspense fallback={<LoadingProduct />}>
             <ProductList

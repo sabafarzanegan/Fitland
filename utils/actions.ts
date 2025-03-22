@@ -1,9 +1,16 @@
 "use server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import db from "./db";
-import { addUserType, formAddressAction, orderData, ProductType } from "./type";
+import {
+  addUserType,
+  commentData,
+  formAddressAction,
+  orderData,
+  ProductType,
+} from "./type";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { commentSchema } from "./schema";
 
 export const checkUserIndb = async () => {
   try {
@@ -536,6 +543,47 @@ export const deletCategory = async (categoryId: string) => {
       },
     });
     revalidatePath("/dashboard/category");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addComment = async ({
+  values,
+  rating,
+}: {
+  values: commentData;
+  rating: number;
+}) => {
+  try {
+    const res = await db.comment.create({
+      data: {
+        content: values.content,
+        productId: values.productId,
+        userId: values.userId,
+        score: rating,
+      },
+    });
+    console.log(res);
+    revalidatePath(`/products/${values.productId}`);
+    return { success: true };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCommentForProduct = async (productId: string | undefined) => {
+  try {
+    const res = await db.product.findFirst({
+      where: {
+        id: productId,
+      },
+
+      include: {
+        comments: true,
+      },
+    });
+    return res;
   } catch (error) {
     console.log(error);
   }

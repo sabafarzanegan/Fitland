@@ -91,3 +91,18 @@ export type orderData = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export type commentData = {
+  userId: string;
+  content: string;
+  productId: string;
+};
+
+export type getComment = {
+  id: string;
+  userId: string;
+  productId: string | null;
+  content: string;
+  score: number;
+  createdAt: Date;
+};

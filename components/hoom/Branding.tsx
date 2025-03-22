@@ -6,7 +6,7 @@ import BrandCart from "../card/BrandCart";
 function Branding() {
   return (
     <div className="relative">
-      <div className="container mt-20 flex items-end justify-center  gap-x-6 z-10 ">
+      <div className="container mt-20 flex items-end justify-center flex-wrap gap-y-6  gap-x-6 z-10 ">
         <BrandCart
           img="/images/brand1.jpg"
           link="/products?brand=nike"
