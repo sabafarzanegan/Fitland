@@ -13,7 +13,9 @@ function CategoryItem({
   return (
     <div className="flex items-center flex-wrap gap-y-2 gap-x-4 mt-4">
       {categories?.map((item) => (
-        <div className="px-6 py-2 flex items-center justify-between gap-x-4 bg-secondary-300 text-gray-50 rounded-lg">
+        <div
+          key={item.id}
+          className="px-6 py-2 flex items-center justify-between gap-x-4 bg-secondary-300 text-gray-50 rounded-lg">
           <div
             onClick={() => {
               deletCategory(item.id);

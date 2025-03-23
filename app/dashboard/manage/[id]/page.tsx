@@ -16,7 +16,7 @@ async function page({ params }: { params: { id: string } }) {
         className="flex items-center
        justify-between flex-wrap gap-y-4 border-b py-3">
         {order?.orderItems.map((item) => (
-          <OrderCart item={item} />
+          <OrderCart key={item.id} item={item} />
         ))}
       </div>
       <div className="mt-10 space-y-4 border-b py-3">

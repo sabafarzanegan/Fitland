@@ -9,7 +9,7 @@ function CommnetList({
   return (
     <div className="h-[500px] overflow-y-auto  overflow-x-hidden space-y-4">
       {comments?.map((item) => (
-        <CommentItem item={item} />
+        <CommentItem key={item.id} item={item} />
       ))}
     </div>
   );

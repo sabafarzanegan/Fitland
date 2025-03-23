@@ -50,7 +50,7 @@ async function UserOrders({ id }: { id: string }) {
         <div className="">
           <div className="flex items-center  gap-x-2">
             {orders?.orderItems.map((item) => (
-              <OrderCart item={item} />
+              <OrderCart key={item.id} item={item} />
             ))}
           </div>
         </div>

@@ -28,6 +28,7 @@ async function CommentItem({ item }: { item: getComment }) {
             const starIndex = index + 1;
             return (
               <Star
+                key={index}
                 className={`w-4 h-4  ${
                   starIndex <= item.score
                     ? "text-[#FF991F] fill-[#FF991F]"

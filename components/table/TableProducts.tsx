@@ -44,7 +44,7 @@ function TableProducts({ entries }: { entries: getProduct[] | undefined }) {
         </TableHeader>
         <TableBody>
           {entries?.map((item) => (
-            <TableRow className="mb-3">
+            <TableRow key={item.id} className="mb-3">
               <TableCell className="w-[20%] h-[20%]">
                 <Image
                   src={item.images[0].url}

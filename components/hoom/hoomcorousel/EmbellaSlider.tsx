@@ -9,7 +9,7 @@ import {
 } from "./EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import { getProduct } from "@/utils/type";
-import "./embellaSlider.css";
+import "./embellaSLider.css";
 
 import ProductCard from "@/components/card/ProductCard";
 type PropType = {
