@@ -7,7 +7,7 @@ async function CommentItem({ item }: { item: getComment }) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   return (
-    <div className="border py-6 rounded-md">
+    <div className="border py-6 rounded-md flex-1 w-full">
       <div className="flex items-center justify-between px-4">
         <div className="flex items-center gap-x-2 ">
           <div>

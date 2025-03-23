@@ -43,27 +43,30 @@ function AddComment({ userInformation, productId }: props) {
     } catch (error) {}
   }
   return (
-    <div className="">
+    <div className="mb-14 w-[392px] flex-1">
       <h1 className="border-b text-[18px] font-semibold py-[10px]">
         نظرت رو برامون بنویس
       </h1>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <TextArea title="نظر شما" {...form.register("content")} />
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-7">
+        <TextArea
+          title="نظر شما"
+          {...form.register("content")}
+          className="h-[147px] w-full"
+        />
         {form.formState.errors.content && (
           <p className="text-red-500 text-sm">
             {form.formState.errors.content.message}
           </p>
         )}
-        <div className="flex items-center gap-x-6">
+        <div className="flex items-center gap-x-[18px] justify-between">
           <div className="flex gap-1">
             {[...Array(totalStars)].map((_, index) => {
               const starIndex = index + 1;
-              console.log(starIndex);
 
               return (
                 <Star
                   key={index}
-                  className={`w-6 h-6 cursor-pointer ${
+                  className={`w-5 h-5  cursor-pointer ${
                     starIndex <= rating
                       ? "text-[#FF991F] fill-[#FF991F]"
                       : "text-gray-300"

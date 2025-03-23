@@ -4,7 +4,14 @@ import { getProduct } from "@/utils/type";
 import React, { useState } from "react";
 import CartBtn from "../cart/CartBtn";
 import { Check } from "lucide-react";
-function ProductFeature({ product }: { product: getProduct }) {
+import FavoriteForm from "../favorites/FavoriteForm";
+function ProductFeature({
+  product,
+  userId,
+}: {
+  product: getProduct;
+  userId: string | undefined;
+}) {
   const [selecedSize, setSelectedSize] = useState(product?.sizes[0]);
   const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
   const selectedProduct = {
@@ -18,7 +25,6 @@ function ProductFeature({ product }: { product: getProduct }) {
     image: product.images[0].url,
     name: product.name,
   };
-  console.log(product);
 
   return (
     <div className="mt-[21px]">
@@ -88,7 +94,9 @@ function ProductFeature({ product }: { product: getProduct }) {
           ))}
         </div>
       </div>
-      <CartBtn selectedProduct={selectedProduct} />
+      <div className="flex items-center justify-between">
+        <CartBtn selectedProduct={selectedProduct} />
+      </div>
     </div>
   );
 }

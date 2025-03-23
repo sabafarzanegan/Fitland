@@ -25,7 +25,8 @@ model User {
   isAdmin        Boolean  @default(false)     
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
-   comments Comment[]
+  comments Comment[]
+  favorites Favorite[]
 
   address     Address? @relation(fields: [addressId], references: [id])
   addressId   String?  @unique 
@@ -61,6 +62,7 @@ model Product {
   price         Float
   discountPrice Float? 
   comments Comment[]
+
 
   orderItems    OrderItem[] 
   createdAt     DateTime @default(now())
@@ -145,4 +147,11 @@ model Comment {
   content   String  
   score     Int
   createdAt DateTime @default(now())
+}
+
+model Favorite{
+  id        String   @id @default(cuid()) 
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String  
+  prodcutId String
 }

@@ -588,3 +588,46 @@ export const getCommentForProduct = async (productId: string | undefined) => {
     console.log(error);
   }
 };
+
+export const favoriteHandler = async (formData: FormData) => {
+  console.log(formData.get("productId"));
+  console.log(formData.get("userId"));
+  try {
+    const existingFavorite = await db.favorite.findFirst({
+      where: {
+        prodcutId: formData.get("productId") as string,
+      },
+    });
+
+    if (existingFavorite) {
+      const res = await db.favorite.delete({
+        where: {
+          id: existingFavorite.id,
+        },
+      });
+      console.log(res);
+    } else {
+      const res = await db.favorite.create({
+        data: {
+          prodcutId: formData.get("productId") as string,
+          userId: formData.get("userId") as string,
+        },
+      });
+      console.log(res);
+    }
+    revalidatePath(`/products/${formData.get("productId")}`);
+  } catch (error) {}
+};
+
+export const findFavoriteProduct = async (productId: string | undefined) => {
+  try {
+    const res = await db.favorite.findFirst({
+      where: {
+        prodcutId: productId,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};

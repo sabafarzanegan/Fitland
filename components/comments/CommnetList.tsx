@@ -7,7 +7,7 @@ function CommnetList({
   comments: getComment[] | undefined | null;
 }) {
   return (
-    <div className="h-[500px] overflow-y-auto flex-1 space-y-4">
+    <div className="h-[500px] overflow-y-auto  overflow-x-hidden space-y-4">
       {comments?.map((item) => (
         <CommentItem item={item} />
       ))}

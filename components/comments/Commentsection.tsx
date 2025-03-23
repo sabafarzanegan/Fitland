@@ -36,7 +36,7 @@ async function Commentsection({
         </div>
         <p>{userInfo?.name}</p>
       </div>
-      <div className="flex  items-start justify-between gap-x-6 gap-y-4  flex-wrap-reverse">
+      <div className="flex items-start justify-between  flex-wrap gap-x-6">
         {user && (
           <AddComment userInformation={userInformation} productId={productId} />
         )}
