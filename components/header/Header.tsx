@@ -13,7 +13,7 @@ import { getUserInfo } from "@/utils/actions";
 async function Header() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  const userInfo = await getUserInfo(user.id);
+  const userInfo = await getUserInfo(user?.id);
 
   return (
     <>
@@ -37,7 +37,7 @@ async function Header() {
         <Search inpage={false} />
         <div className=" items-center justify-center gap-x-[14px] hidden md:flex">
           {/* <FavoriteBtn /> */}
-          {userInfo ? <ProfileDropDown /> : <Loginbtn />}
+          {user ? <ProfileDropDown /> : <Loginbtn />}
           <BagCart />
         </div>
       </div>

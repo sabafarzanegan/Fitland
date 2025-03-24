@@ -1,18 +1,21 @@
+import { getUserforComment, getUserInfo } from "@/utils/actions";
 import { getComment } from "@/utils/type";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Star } from "lucide-react";
 import Image from "next/image";
 
 async function CommentItem({ item }: { item: getComment }) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+  console.log(item);
+  const user = await getUserforComment(item.userId);
+  console.log(user);
+
   return (
     <div className="border py-6 rounded-md flex-1 w-full">
       <div className="flex items-center justify-between px-4">
         <div className="flex items-center gap-x-2 ">
           <div>
             <Image
-              src={user.picture as string}
+              src={user?.imageUrl as string}
               alt=""
               className="rounded-full "
               width={50}
@@ -20,7 +23,7 @@ async function CommentItem({ item }: { item: getComment }) {
             />
           </div>
           <div>
-            <span>{user.given_name}</span>
+            <span>{user?.name}</span>
           </div>
         </div>
         <div className="flex items-center gap-x-1 ">

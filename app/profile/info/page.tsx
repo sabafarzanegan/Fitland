@@ -2,21 +2,17 @@ import SubmitBtn from "@/components/button/SubmitBtn";
 import { Input } from "@/components/ui/Input/Input";
 import { getUserInfo, updateUserData } from "@/utils/actions";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 import React from "react";
 
 async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  const userInfo:
-    | {
-        email: string;
-        name: string | null;
-        id: string;
-        phoneNumber: string | null;
-      }
-    | null
-    | undefined = await getUserInfo(user?.id);
-  7;
+  if (!user) {
+    return redirect("/auth/sign-in");
+  }
+  const userInfo = await getUserInfo(user?.id);
+
   return (
     <div className="border rounded-[16px] border-neutral-300 p-6 ">
       <form

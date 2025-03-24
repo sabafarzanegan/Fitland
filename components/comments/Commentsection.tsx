@@ -12,7 +12,9 @@ async function Commentsection({
 }) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  const userInfo = await getUserInfo(user.id);
+  const userInfo = await getUserInfo(user?.id);
+  console.log(user);
+
   const userInformation = {
     id: userInfo?.id,
     email: userInfo?.email,
@@ -20,22 +22,24 @@ async function Commentsection({
   };
 
   const comments = await getCommentForProduct(productId);
-  console.log(comments?.comments);
 
   return (
     <div className="mt-8">
-      <div className="flex items-center gap-x-4 ">
-        <div>
-          <Image
-            src={user.picture as string}
-            alt=""
-            width={50}
-            height={50}
-            className="rounded-full"
-          />
+      {user && (
+        <div className="flex items-center gap-x-4 ">
+          <div>
+            <Image
+              src={user?.picture as string}
+              alt=""
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+          </div>
+          <p>{userInfo?.name}</p>
         </div>
-        <p>{userInfo?.name}</p>
-      </div>
+      )}
+
       <div className="flex items-start justify-between  flex-wrap gap-x-6">
         {user && (
           <AddComment userInformation={userInformation} productId={productId} />

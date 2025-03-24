@@ -10,7 +10,7 @@ async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   if (!user) {
-    redirect("/auth/sign-in");
+    return redirect("/auth/sign-in");
   }
   const userInfo = await getUserInfo(user?.id);
 
@@ -34,7 +34,7 @@ async function page() {
           </div>
         </div>
         {/* linkItems */}
-        <ProfileLinks isAdmin={userInfo?.isAdmin} />
+        <ProfileLinks isAdmin={userInfo?.isAdmin || false} />
       </div>
     </div>
   );

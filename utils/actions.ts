@@ -67,7 +67,16 @@ export const getUserInfo = async (id: string) => {
     console.log(error);
   }
 };
-
+export const getUserforComment = async (userId: string | undefined) => {
+  try {
+    const res = await db.user.findFirst({
+      where: {
+        id: userId,
+      },
+    });
+    return res;
+  } catch (error) {}
+};
 export const updateUserData = async (formData: FormData) => {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
@@ -593,6 +602,9 @@ export const favoriteHandler = async (formData: FormData) => {
   console.log(formData.get("productId"));
   console.log(formData.get("userId"));
   try {
+    if (!formData.get("userId")) {
+      return redirect("/auth/sign-in");
+    }
     const existingFavorite = await db.favorite.findFirst({
       where: {
         prodcutId: formData.get("productId") as string,

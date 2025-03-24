@@ -8,7 +8,7 @@ async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   if (!user) {
-    redirect("/auth/sign-in");
+    return redirect("/auth/sign-in");
   }
   const userInfo = await getUserInfo(user?.id);
   const addres = await getAddressInfo(userInfo?.id);
@@ -27,7 +27,7 @@ async function page() {
   return (
     <div>
       <h1 className="text-[20px]">جزئیات آدرس شما</h1>
-      <AddressForm id={userInfo?.id} addressInfo={addressInfo} />
+      <AddressForm id={userInfo?.id as string} addressInfo={addressInfo} />
     </div>
   );
 }

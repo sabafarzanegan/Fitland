@@ -14,14 +14,10 @@ const nextConfig = {
       },
     ],
   },
-
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"],
-    });
-    return config;
-  },
+  // reactStrictMode: true,
+  // env: {
+  //   NEXT_PUBLIC_DEBUG: "true", // فعالسازی حالت debug
+  // },
 };
 
 export default nextConfig;

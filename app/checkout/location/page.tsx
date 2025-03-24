@@ -9,7 +9,7 @@ async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   if (!user) {
-    redirect("/auth/sign-in");
+    return redirect("/auth/sign-in");
   }
   const userInfo = await getUserInfo(user?.id);
   const addres = await getAddressInfo(userInfo?.id);

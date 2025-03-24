@@ -21,27 +21,46 @@ function AddressForm({
 }) {
   const form = useForm<z.infer<typeof formAddressSchema>>({
     resolver: zodResolver(formAddressSchema),
-    defaultValues: {
-      address: addressInfo.address || "",
-      city: addressInfo.city || "",
-      number: addressInfo.number || "",
-      phonenum: addressInfo.phonenum || "",
-      reciving: addressInfo.reciving || "",
-      state: addressInfo.state || "",
-      unit: addressInfo.unit || "",
-      zipcode: addressInfo.zipcode || "",
+
+    defaultValues: addressInfo || {
+      address: "",
+      city: "",
+      number: "",
+      phonenum: "",
+      reciving: "",
+      state: "",
+      unit: "",
+      zipcode: "",
     },
   });
   async function onSubmit(values: z.infer<typeof formAddressSchema>) {
-    const res = await saveUserAddress(values, id);
-    if (res?.isSuccess) {
-      toast.success(res.message, {
-        className: "text-white bg-picton_blue-500",
-      });
-    } else {
-      toast.error("خطا!دوباره تلاش کنید", {
+    // if (id) {
+    //   const res = await saveUserAddress(values, id);
+    //   if (res?.isSuccess) {
+    //     toast.success(res.message, {
+    //       className: "text-white bg-picton_blue-500",
+    //     });
+    //   } else {
+    //     toast.error("خطا!دوباره تلاش کنید", {
+    //       className: "text-white bg-cinnabar-500 ",
+    //     });
+    //   }
+    // } else {
+    //   return;
+    // }
+    try {
+      if (id) {
+        const res = await saveUserAddress(values, id);
+      } else {
+        toast.error("آیدی کاربر نامعتبر است.", {
+          className: "text-white bg-cinnabar-500 ",
+        });
+      }
+    } catch (error) {
+      toast.error("خطا در پردازش فرم.", {
         className: "text-white bg-cinnabar-500 ",
       });
+      console.error(error);
     }
   }
   return (

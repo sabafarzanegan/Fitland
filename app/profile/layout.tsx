@@ -2,12 +2,16 @@ import ProfileLinks from "@/components/userProfile/ProfileLinks";
 import { getUserInfo } from "@/utils/actions";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 import { ReactNode } from "react";
 
 async function layout({ children }: { children: ReactNode }) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+  if (!user) {
+    return redirect("/auth/sign-in");
+  }
   const userInfo = await getUserInfo(user?.id);
   return (
     <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5 container">
@@ -30,7 +34,7 @@ async function layout({ children }: { children: ReactNode }) {
           </div>
         </div>
         {/* linkItems */}
-        <ProfileLinks isAdmin={userInfo?.isAdmin} />
+        <ProfileLinks isAdmin={userInfo?.isAdmin || false} />
       </div>
       {/* content */}
       <div className="flex-1">{children}</div>

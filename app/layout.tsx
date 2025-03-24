@@ -3,6 +3,7 @@ import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import Ad from "@/components/Advertise/Ad";
+import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,13 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazir.className}`}>
-        <Ad />
-
-        <main className=" mx-auto">
+      <body className={`${vazir.className} h-svh flex flex-col `}>
+        {/* <Ad /> */}
+        <main className=" mx-auto flex-1  flex flex-col py-4 ">
           <Header />
-          {children}
+          <div className="flex-1">{children}</div>
         </main>
+        <Footer />
       </body>
     </html>
   );

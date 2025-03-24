@@ -20,7 +20,7 @@ const Pagination: FC<PaginationControlsProps> = ({
   const per_page = searchParams.get("per_page") ?? "5";
 
   return (
-    <div className="flex gap-2 py-2 items-center justify-center">
+    <div className="flex gap-2 py-2 items-center justify-center mx-auto ">
       <button
         className="bg-secondary-main text-white p-1 rounded-full disabled:bg-neutral-500 "
         disabled={!hasPrevPage}

@@ -24,7 +24,7 @@ async function page({
       <div className="flex items-center justify-between mb-14">
         <Filterbtn />
       </div>
-      <div className="flex items-start justify-between gap-x-6 ">
+      <div className="flex items-start justify-between gap-x-6  mx-auto">
         <div>
           <Suspense fallback={<LoadingProduct />}>
             <ProductList

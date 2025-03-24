@@ -14,7 +14,7 @@ async function page({ params }: { params: { id: string | undefined } }) {
   const product = await getProductById(params.id as string);
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  const userInfo = await getUserInfo(user.id);
+  const userInfo = await getUserInfo(user?.id);
   const OPTIONS: EmblaOptionsType = {};
   return (
     <div className="mt-[53px] container h-svh">
