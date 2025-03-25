@@ -23,9 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazir.className} h-svh flex flex-col `}>
+      <body className={`${vazir.className} h-svh  `}>
         {/* <Ad /> */}
-        <main className=" mx-auto flex-1  flex flex-col py-4 ">
+        <main className=" mx-auto  py-4 ">
           <Header />
           <div className="flex-1">{children}</div>
         </main>

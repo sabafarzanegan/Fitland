@@ -82,7 +82,7 @@ import Link from "next/link";
 
 function Landing() {
   return (
-    <div className="mt-[48px] flex flex-col items-center justify-center min-h-[60vh]">
+    <div className="mt-[48px] flex flex-col items-center justify-center min-h-[60vh] container">
       <div className="flex flex-col md:flex-row items-center justify-between w-full">
         <div className="space-y-4 text-center md:text-start">
           <p className="font-semibold text-neutral-600">

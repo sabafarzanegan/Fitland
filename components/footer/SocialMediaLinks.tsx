@@ -3,7 +3,7 @@ import React from "react";
 
 function SocialMediaLinks() {
   return (
-    <div className="space-y-4 mt-5 mx-auto">
+    <div className="space-y-4 mt-5 mx-auto ">
       <p className="text-[14px] font-semibold">
         برای دریافت تخفیف های بیشتر ما را دنبال کنید!
       </p>
