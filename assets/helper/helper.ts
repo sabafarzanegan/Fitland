@@ -62,7 +62,7 @@ export const AdminLink = [
   },
   {
     id: 3,
-    name: "مدیریت محصولات",
+    name: "مدیریت سفارشات",
     icon: Tickets,
     link: "/dashboard/manage",
   },

@@ -53,10 +53,7 @@ export default withAuth(
       "/public",
       "/products",
       "checkout/cart",
-    ], // مسیرهای عمومی
-    // isAuthorized: ({ token }: { token: { permissions: string[] } }) => {
-    //   return token.permissions.includes("eat:chips"); // چک کردن مجوزها
-    // },
+    ],
   }
 );
 

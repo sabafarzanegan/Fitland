@@ -22,6 +22,8 @@ function TableProducts({ entries }: { entries: getProduct[] | undefined }) {
       const res = await deletProductById(id);
       if (res.isSuccess) {
         toast.success("محصول با موفقیت حدف شد");
+      } else {
+        toast.error("خطا دوباره تلاش کنید");
       }
       setIsLoading(false);
     } catch (error) {
@@ -32,7 +34,7 @@ function TableProducts({ entries }: { entries: getProduct[] | undefined }) {
   };
   return (
     <>
-      <Table dir="rtl">
+      <Table dir="rtl" className=" overflow-x-scroll">
         <TableHeader className="w-full">
           <TableRow>
             <TableHead className="px-0 text-right">تصویر</TableHead>
@@ -45,20 +47,22 @@ function TableProducts({ entries }: { entries: getProduct[] | undefined }) {
         <TableBody>
           {entries?.map((item) => (
             <TableRow key={item.id} className="mb-3">
-              <TableCell className="w-[20%] h-[20%]">
+              <TableCell className="w-[30%] h-[30%]">
                 <Image
-                  src={item.images[0].url}
+                  src={item.images[0]?.url}
                   alt=""
-                  width={100}
-                  height={100}
-                  className="w-[100%] h-[100%]"
+                  width={50}
+                  height={50}
+                  className=""
                 />
               </TableCell>
               <TableCell className="text-[12px] md:text-md">
                 {item.name}
               </TableCell>
-              <TableCell>{item.price.toLocaleString("fa-IR")} تومان</TableCell>
-              <TableCell>
+              <TableCell className="text-[12px] md:text-md">
+                {item.price.toLocaleString("fa-IR")} تومان
+              </TableCell>
+              <TableCell className="text-[12px] md:text-md">
                 {item.discountPrice?.toLocaleString("fa-IR")}تومان
               </TableCell>
               <TableCell className="">

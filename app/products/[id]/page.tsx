@@ -1,5 +1,3 @@
-import Commentsection from "@/components/comments/Commentsection";
-import EmblaCarousel from "@/components/corousel/EmblaCarousel";
 import FavoriteForm from "@/components/favorites/FavoriteForm";
 import ProductAd from "@/components/product/advertize/ProductAd";
 import DescriptonProduct from "@/components/product/DescriptonProduct";
@@ -9,6 +7,16 @@ import { getProductById, getUserInfo } from "@/utils/actions";
 import { getProduct } from "@/utils/type";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { EmblaOptionsType } from "embla-carousel";
+import dynamic from "next/dynamic";
+
+const EmblaCarousel = dynamic(
+  () => import("@/components/corousel/EmblaCarousel"),
+  { ssr: false }
+);
+const Commentsection = dynamic(
+  () => import("@/components/comments/Commentsection"),
+  { ssr: false }
+);
 
 async function page({ params }: { params: { id: string | undefined } }) {
   const product = await getProductById(params.id as string);
@@ -26,7 +34,9 @@ async function page({ params }: { params: { id: string | undefined } }) {
             userId={userInfo?.id}
           />
           <div className="flex items-center gap-x-4">
-            <FavoriteForm productId={params.id} userId={userInfo?.id} />
+            {user && (
+              <FavoriteForm productId={params.id} userId={userInfo?.id} />
+            )}
             <ShareButton productId={params.id} />
           </div>
         </div>

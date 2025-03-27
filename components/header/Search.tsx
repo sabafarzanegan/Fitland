@@ -6,7 +6,7 @@ function Search({ inpage }: { inpage: boolean }) {
   const [value, setValue] = useState("");
   return (
     <div
-      className={` relative ${
+      className={` relative container ${
         inpage
           ? "w-full block lg:hidden mt-[14px]"
           : "w-[600px] hidden lg:block"

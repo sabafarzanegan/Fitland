@@ -49,7 +49,7 @@ function EditProductForm({
     );
 
     if (res.isSuccess) {
-      toast.success("محصول با تغییر کرد");
+      toast.success("محصول با موفقیت تغییر کرد");
     } else {
       toast.error("خطا!دوباره تلاش کنید");
     }

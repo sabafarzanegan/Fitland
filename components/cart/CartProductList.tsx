@@ -2,7 +2,7 @@
 
 import { useCartStore } from "@/store/CartStore";
 import CartProduct from "./CartProduct";
-import TotoalPrice from "./TotoalPrice";
+
 import Image from "next/image";
 
 function CartProductList() {

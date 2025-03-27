@@ -12,11 +12,12 @@ async function layout({ children }: { children: ReactNode }) {
   if (!user) {
     return redirect("/auth/sign-in");
   }
+
   const userInfo = await getUserInfo(user?.id);
   return (
     <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5 container">
       {/* sidebar */}
-      <div className="hidden md:block">
+      <div className="hidden md:block shadow-md">
         {/* top side */}
         <div className="bg-gradient-to-b w-[288px] from-[#FEEEE8] to-blue-[#FFFFFF] py-[48px] rounded-[16px]">
           <div className="w-[100px] h-[100px]   mx-auto mb-2">

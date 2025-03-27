@@ -7,7 +7,7 @@ import DescriptonProduct from "../product/DescriptonProduct";
 
 function Footer() {
   return (
-    <footer className="w-full bg-secondary-700 text-white py-3">
+    <footer className="w-full bg-secondary-700 text-white py-3 ">
       <div className="container py-[48px] w-full flex items-center justify-between flex-wrap-reverse md:flex-nowrap">
         <div className=" flex-1   items-center justify-between gap-y-4 gap-x-10 hidden md:flex">
           <FooterLinks

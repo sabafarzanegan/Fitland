@@ -23,13 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazir.className} h-svh  `}>
+      <body className={`${vazir.className} `}>
         {/* <Ad /> */}
-        <main className=" mx-auto  py-4 ">
+        <main className="">
           <Header />
-          <div className="flex-1">{children}</div>
+          <div className=" h-full">{children}</div>
+          <Footer />
         </main>
-        <Footer />
       </body>
     </html>
   );

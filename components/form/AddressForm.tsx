@@ -34,20 +34,6 @@ function AddressForm({
     },
   });
   async function onSubmit(values: z.infer<typeof formAddressSchema>) {
-    // if (id) {
-    //   const res = await saveUserAddress(values, id);
-    //   if (res?.isSuccess) {
-    //     toast.success(res.message, {
-    //       className: "text-white bg-picton_blue-500",
-    //     });
-    //   } else {
-    //     toast.error("خطا!دوباره تلاش کنید", {
-    //       className: "text-white bg-cinnabar-500 ",
-    //     });
-    //   }
-    // } else {
-    //   return;
-    // }
     try {
       if (id) {
         const res = await saveUserAddress(values, id);

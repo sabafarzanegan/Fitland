@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "res.cloudinary.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "gravatar.com",
+        pathname: "**",
+      },
     ],
   },
   // reactStrictMode: true,

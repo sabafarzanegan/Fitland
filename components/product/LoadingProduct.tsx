@@ -10,6 +10,9 @@ function LoadingProduct() {
       <Skeleton />
       <Skeleton />
       <Skeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
     </div>
   );
 }

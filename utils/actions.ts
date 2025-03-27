@@ -196,6 +196,8 @@ export const createProduct = async (
         },
       },
     });
+    console.log(newProduct);
+
     return { isSuccess: true, message: "محصول با موفقیت ساخته شد" };
   } catch (error) {
     console.log(error);
@@ -281,6 +283,8 @@ export const updateProductById = async (
   formdata: ProductType,
   selectedCategories: { id: string; name: string }[] | undefined
 ) => {
+  console.log(formdata);
+
   try {
     await db.image.deleteMany({
       where: {
@@ -598,6 +602,22 @@ export const getCommentForProduct = async (productId: string | undefined) => {
   }
 };
 
+export const getCommentForUser = async (userId: string | undefined) => {
+  try {
+    const res = await db.user.findFirst({
+      where: {
+        clerkUserId: userId,
+      },
+      select: {
+        comments: true,
+      },
+    });
+    return res;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const favoriteHandler = async (formData: FormData) => {
   console.log(formData.get("productId"));
   console.log(formData.get("userId"));
@@ -642,4 +662,20 @@ export const findFavoriteProduct = async (productId: string | undefined) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const favoriteUser = async (userId: string | undefined) => {
+  try {
+    const res = await db.user.findFirst({
+      where: {
+        clerkUserId: userId,
+      },
+      select: {
+        favorites: true,
+      },
+    });
+    console.log(res);
+
+    return res;
+  } catch (error) {}
 };

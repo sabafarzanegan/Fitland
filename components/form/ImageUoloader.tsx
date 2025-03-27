@@ -71,6 +71,8 @@ function ImageUploader() {
           toast.success("عکس شما با موفقیت ارسال شد");
           setPreviewUrls([]);
           setImages([]);
+        } else {
+          toast.error("خطا دوباره تلاش کنید ");
         }
         setIsloading(false);
         return data.secure_url;

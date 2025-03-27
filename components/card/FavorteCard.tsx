@@ -1,17 +1,18 @@
-"use client";
+import { getProductById } from "@/utils/actions";
 import { calcDiscount } from "@/utils/lib";
-import { getProduct } from "@/utils/type";
+
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-function ProductCard({
-  product,
+async function FavorteCard({
+  productId,
   edit,
 }: {
-  product: getProduct;
+  productId: string | undefined;
   edit: boolean;
 }) {
+  const product = await getProductById(productId as string);
   return (
     <>
       <Link
@@ -61,22 +62,22 @@ function ProductCard({
               </span>
             </div>
             <div>
-              {product?.sizes?.length > 1 ? (
+              {(product?.sizes.length as number) > 1 ? (
                 <p className="text-body-6">
                   <span className="px-1">از سایز </span>{" "}
-                  {`${product?.sizes[0]?.value}تا سایز${
-                    product.sizes[product?.sizes?.length - 1].value
+                  {`${product?.sizes[0].value}تا سایز${
+                    product?.sizes[product.sizes.length - 1].value
                   }`}
                 </p>
               ) : (
-                <p>{`سایز ${product?.sizes[0]?.value}`}</p>
+                <p>{`سایز ${product?.sizes[0].value}`}</p>
               )}
             </div>
           </div>
           <div className=" w-24 h-10 flex items-center justify-center">
-            {product.colors.map((cls) => (
+            {product?.colors.map((cls) => (
               <div
-                key={cls?.id}
+                key={cls.id}
                 style={{ backgroundColor: cls.name }}
                 className=" w-5 h-5  rounded-full"></div>
             ))}
@@ -88,4 +89,4 @@ function ProductCard({
   );
 }
 
-export default ProductCard;
+export default FavorteCard;

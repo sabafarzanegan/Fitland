@@ -16,7 +16,7 @@ async function layout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5 container">
+    <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5 container min-h-svh">
       {/* sidebar */}
       <div className="hidden md:block">
         {/* top side */}

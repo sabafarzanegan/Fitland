@@ -8,7 +8,7 @@ async function page() {
   const user = await getUser();
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center min-h-svh">
       <div className="flex items-start justify-between mt-[32px] gap-x-10 py-5 ">
         {/* sidebar */}
         <div className=" md:hidden">
