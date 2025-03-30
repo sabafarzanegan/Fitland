@@ -17,8 +17,8 @@ function ProductCard({
       <Link
         href={`/products/${product?.id}`}
         dir="rtl"
-        className="mx-auto w-full ">
-        <div className=" rounded-[16px] overflow-hidden  max-w-xl w-full max-h-[600px] h-full  border mx-auto ">
+        className="mx-auto w-full">
+        <div className=" rounded-[16px] overflow-hidden max-w-3xl w-full max-h-[600px] h-full  border mx-auto ">
           {/* image product */}
           <div className=" w-full h-[280px] relative ">
             <Image

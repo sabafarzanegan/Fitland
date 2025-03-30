@@ -2,7 +2,7 @@ import ProductAdItem from "./ProductAdItem";
 
 function ProductAd() {
   return (
-    <div className="w-full mt-20  items-center justify-center hidden lg:flex ">
+    <div className="w-full my-20  items-center justify-center hidden lg:flex ">
       <div className="flex items-center gap-x-6">
         <ProductAdItem src="/images/truck-tick.svg" title="ارسال سریع" />
         <ProductAdItem src="/images/paypal.png" title="پرداخت قسطی" />

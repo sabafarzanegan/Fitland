@@ -679,3 +679,22 @@ export const favoriteUser = async (userId: string | undefined) => {
     return res;
   } catch (error) {}
 };
+
+export const deletComment = async (
+  commentId: string | undefined,
+  userId: string | undefined
+) => {
+  try {
+    const res = await db.comment.delete({
+      where: {
+        id: commentId,
+        userId,
+      },
+    });
+
+    return { issuccess: true };
+  } catch (error) {
+    console.log(error);
+    return { issuccess: false };
+  }
+};

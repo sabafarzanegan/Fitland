@@ -20,12 +20,12 @@ async function page() {
   const finduser = await checkUserIndb();
 
   if (finduser) {
-    redirect("/");
+    return redirect("/");
   } else {
     const res = await addUserIndb(formData);
     console.log(res);
     if (res?.isSuccess) {
-      redirect("/");
+      return redirect("/");
     }
   }
 

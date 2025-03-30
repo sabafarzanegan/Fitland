@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
-import Ad from "@/components/Advertise/Ad";
 import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
