@@ -61,7 +61,7 @@ function CartProduct({ cartItem }: prop) {
               <p>{cartItem.qt}</p>
             </div>
             <div className="pl-2">
-              <p className="text-secondary-main place-items-end">
+              <p className="text-secondary-main place-items-end text-sm md:text-nd">
                 {((cartItem.discountPrice as number) > 0
                   ? cartItem.discountPrice
                   : cartItem.price

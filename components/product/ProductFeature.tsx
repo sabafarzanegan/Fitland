@@ -60,14 +60,14 @@ function ProductFeature({
       {/* size */}
       <div className="mt-[20px] space-y-2">
         <h2 className="text-[24px] font-semibold ">سایز</h2>
-        <div className="grid grid-cols-2 lg:grid-cols-3  gap-2">
+        <div className="grid grid-cols-4   gap-2">
           {product?.sizes.map((size) => (
             <div
               key={size.id}
               onClick={() => setSelectedSize(size)}
               className={`${
                 selecedSize.id == size.id && "border-2 border-secondary-700"
-              } w-[60px] lg:w-[80px]  rounded-2 bg-neutral-150 text-secondary-main flex items-center justify-center cursor-pointer`}>
+              } w-[60px] lg:w-[80px]  rounded-md bg-neutral-150 text-secondary-main flex items-center justify-center cursor-pointer`}>
               <span className="text-md">{size?.value}</span>
             </div>
           ))}

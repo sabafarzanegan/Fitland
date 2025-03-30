@@ -8,7 +8,7 @@ async function page() {
   return (
     <div>
       {allorders?.map((order) => (
-        <TableOrderAdmin key={order.id} order={order} />
+        <TableOrderAdmin key={order?.id} order={order} />
       ))}
     </div>
   );

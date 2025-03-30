@@ -9,10 +9,10 @@ async function UserOrders({ id }: { id: string }) {
   console.log(orders);
 
   return (
-    <div>
+    <div className="max-w-xl w-full">
       <div className="border rounded-[8px] ">
-        <div className="py-6 bg-[#EFF7F6]">
-          <div className="px-6 flex items-center justify-between">
+        <div className="py-6 bg-[#EFF7F6] ">
+          <div className="px-6 flex items-center justify-between flex-wrap">
             <div className="flex items-center gap-x-2">
               <p className="text-neutral-600 ">مبلغ:</p>
               <span>{orders?.totalPrice.toLocaleString("fa-IR")}تومان</span>
@@ -21,7 +21,7 @@ async function UserOrders({ id }: { id: string }) {
               <p>وضعیت:</p>
               {orders?.status === "PENDING" && (
                 <span className="px-2 py-1 rounded-lg bg-fern-500 text-white">
-                  در حال بررسی
+                  بررسی
                 </span>
               )}
               {orders?.status === "CANCELED" && (
@@ -48,7 +48,7 @@ async function UserOrders({ id }: { id: string }) {
           </div>
         </div>
         <div className="">
-          <div className="flex items-center  gap-x-2">
+          <div className="flex items-center gap-x-2">
             {orders?.orderItems.map((item) => (
               <OrderCart key={item.id} item={item} />
             ))}

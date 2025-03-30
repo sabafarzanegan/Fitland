@@ -6,7 +6,7 @@ import { getAddressById, getOrderById } from "@/utils/actions";
 import React from "react";
 
 async function page({ params }: { params: { id: string } }) {
-  const order = await getOrderById(params.id);
+  const order = await getOrderById(params?.id);
 
   const address = await getAddressById(order?.addressId as string);
 
@@ -16,7 +16,7 @@ async function page({ params }: { params: { id: string } }) {
         className="flex items-center
        justify-between flex-wrap gap-y-4 border-b py-3">
         {order?.orderItems.map((item) => (
-          <OrderCart key={item.id} item={item} />
+          <OrderCart key={item?.id} item={item} />
         ))}
       </div>
       <div className="mt-10 space-y-4 border-b py-3">

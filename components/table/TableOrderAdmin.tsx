@@ -14,9 +14,9 @@ import Link from "next/link";
 async function TableOrderAdmin({ order }: { order: orderData }) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  const userInfo = await getUserInfo(user.id);
+  const userInfo = await getUserInfo(user?.id);
   console.log(userInfo);
-  console.log(order.createdAt?.toLocaleString("fa-IR").toString().split(","));
+  console.log(order?.createdAt?.toLocaleString("fa-IR").toString().split(","));
 
   return (
     <div>
@@ -35,18 +35,18 @@ async function TableOrderAdmin({ order }: { order: orderData }) {
               {userInfo?.name}
             </TableCell>
             <TableCell>
-              {order.totalPrice.toLocaleString("fa-IR")} تومان
+              {order?.totalPrice.toLocaleString("fa-IR")} تومان
             </TableCell>
             <TableCell>
               {
-                order.createdAt
+                order?.createdAt
                   ?.toLocaleString("fa-IR")
                   .toString()
                   .split(",")[0]
               }
             </TableCell>
             <TableCell>
-              <Link href={`/dashboard/manage/${order.id}`}>مشاهده</Link>
+              <Link href={`/dashboard/manage/${order?.id}`}>مشاهده</Link>
             </TableCell>
           </TableRow>
         </TableBody>
