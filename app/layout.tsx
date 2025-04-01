@@ -22,13 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazir.className} `}>
+      <body className={`${vazir.className}  `}>
         {/* <Ad /> */}
-        <main className="">
+        <main className="h-full mx-auto max-w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-[1900px]">
           <Header />
           <div className=" h-full">{children}</div>
-          <Footer />
         </main>
+        <Footer />
       </body>
     </html>
   );

@@ -25,14 +25,10 @@ async function page({
     <div>
       <h1 className="mb-4">محصولات</h1>
       <TableProducts entries={entries} />
-      {/* <Suspense fallback={<LoadingProduct />}>
-        <ProductList
-          page={page}
-          per_page={per_page}
-          categoryFilter={categoryFilter}
-          brandfilter={brandfilter}
-        />
-      </Suspense> */}
+      <Pagination
+        hasNextPage={end < (products?.length || 0)}
+        hasPrevPage={start > 0}
+      />
     </div>
   );
 }

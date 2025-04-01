@@ -698,3 +698,25 @@ export const deletComment = async (
     return { issuccess: false };
   }
 };
+
+export const searchHandler = async (query: string | undefined) => {
+  try {
+    const products = await db.product.findMany({
+      where: {
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { categoryName: { contains: query, mode: "insensitive" } },
+        ],
+      },
+      include: {
+        images: true,
+        sizes: true,
+        colors: true,
+      },
+    });
+    console.log(products);
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -8,12 +8,11 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import ProfileDropDown from "../userProfile/ProfileDropDown";
 import MobileNav from "./MobileNav";
 import Link from "next/link";
-import { getUserInfo } from "@/utils/actions";
+import BagCartMobile from "./BagCartMobile";
 
 async function Header() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  const userInfo = await getUserInfo(user?.id);
 
   return (
     <>
@@ -29,9 +28,7 @@ async function Header() {
             </div>
           </Link>
           <Link href="/checkout/cart">
-            <div className="relative w-6 h-6 ">
-              <Image src="/images/bag-1.svg" alt="" fill />
-            </div>
+            <BagCartMobile />
           </Link>
         </div>
         <Search inpage={false} />

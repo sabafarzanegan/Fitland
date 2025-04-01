@@ -17,7 +17,7 @@ const Pagination: FC<PaginationControlsProps> = ({
   const pathname = usePathname();
 
   const page = searchParams.get("page") ?? "1";
-  const per_page = searchParams.get("per_page") ?? "8";
+  const per_page = searchParams.get("per_page") ?? "6";
 
   return (
     <div className="flex gap-2 py-2 items-center justify-center mx-auto mt-6">

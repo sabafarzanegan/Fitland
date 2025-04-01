@@ -10,7 +10,9 @@ function Logo() {
         </Link>
       </div>
       <div className="block md:hidden">
-        <Image src="/images/logo.svg" alt="logosvg" width={81} height={28} />
+        <Link href="/">
+          <Image src="/images/logo.svg" alt="logosvg" width={81} height={28} />
+        </Link>
       </div>
       <span className="mt-2 text-neutral-500 text-body-6 hidden md:block">
         فروشگاه لوازم ورزشی فیت لند

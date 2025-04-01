@@ -16,7 +16,7 @@ async function page({
   const brandfilter = searchParams.brand || "";
 
   const page = searchParams["page"] ?? "1";
-  const per_page = searchParams["per_page"] ?? "8";
+  const per_page = searchParams["per_page"] ?? "6";
 
   return (
     <section className="container ">
