@@ -207,7 +207,8 @@ export const createProduct = async (
 
 export const getAllProduct = async (
   categoryFilter = "",
-  brand: string | string[] = ""
+  brand: string | string[] = "",
+  category: string | string[] = ""
 ) => {
   try {
     let query = {};
@@ -221,28 +222,37 @@ export const getAllProduct = async (
     }
 
     let whereCondition = {};
+
     if (brand && brand !== "") {
       whereCondition = Array.isArray(brand)
         ? { categoryName: { in: brand } }
-        : { categoryName: brand };
+        : { categoryName: [brand] };
     }
+
+    if (category && category.length > 0) {
+      const categoryArray = Array.isArray(category) ? category : [category];
+
+      whereCondition = {
+        ...whereCondition,
+        categories: { some: { name: { in: categoryArray } } },
+      };
+    }
+
     const products = await db.product.findMany({
       ...query,
-      where: {
-        ...whereCondition,
-      },
+      where: whereCondition,
       include: {
         images: true,
         sizes: true,
         colors: true,
       },
     });
+
     return products;
   } catch (error) {
     console.log(error);
   }
 };
-
 export const getProductById = async (id: string) => {
   try {
     const product = await db.product.findFirst({

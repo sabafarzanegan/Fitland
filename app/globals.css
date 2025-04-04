@@ -27,12 +27,10 @@ input[type="range"]::-webkit-slider-runnable-track {
 }
 
 .hero-pink {
-  background-image: url("/images/hero-pink.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 600px;
 }
 .hero-green {
   background-image: url("/images/poster2.png");
@@ -40,7 +38,6 @@ input[type="range"]::-webkit-slider-runnable-track {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 600px;
 }
 .card-clip {
   /* clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%); */

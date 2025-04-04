@@ -3,10 +3,10 @@ import Link from "next/link";
 
 function Poster2() {
   return (
-    <div>
+    <div className="mb-8">
       <div>
-        <div className="hero-green mt-20 text-secondary-900">
-          <div className="container pt-[159px] pr-[148px]">
+        <div className="relative rounded-2xl h-[300px] md:h-[500px] lg:h-[700px] hero-green mt-20  text-secondary-900">
+          <div className=" absolute inset-0 flex flex-col justify-center items-start  px-8 md:px-16 lg:px-32">
             <p>برای لذت بردن از مسیر</p>
             <p className="font-bold text-lg"> دوچرخه،اسکیت و اسکوتر بگیر</p>
             <Link href="/products">
@@ -19,7 +19,11 @@ function Poster2() {
                     alt=""
                   />
                 </span>
-                <p className=" text-neutral-100 font-bold   ">مشاهده محصولات</p>
+                <Link
+                  href="/products?category=اسکیت&category=اسکوتر"
+                  className="text-neutral-100 font-bold">
+                  مشاهده محصولات
+                </Link>
               </button>
             </Link>
           </div>

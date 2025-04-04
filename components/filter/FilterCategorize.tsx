@@ -1,23 +1,16 @@
 import { getCategories } from "@/utils/actions";
+import FilterBtnCategoties from "./FilterBtnCategoties";
 
 async function FilterCategorize() {
   const category = await getCategories();
 
   return (
-    <div className="flex-col gap-y-4 font-semibold hidden md:flex">
+    <div className="flex-col gap-y-4 font-semibold hidden md:flex mt-4">
       <div>
         <p>دسته بندی</p>
       </div>
       <div className="border w-[288px] rounded-[16px] px-4 py-3">
-        <div className="grid grid-cols-2 gap-4">
-          {category?.map((item) => (
-            <button
-              key={item.id}
-              className=" bg-neutral-200  px-3 py-1 text-[12px] rounded-[4px]">
-              {item.name}
-            </button>
-          ))}
-        </div>
+        <FilterBtnCategoties category={category} />
       </div>
     </div>
   );

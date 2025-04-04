@@ -9,12 +9,12 @@ function page() {
     <div className="flex flex-col min-h-screen">
       <div className=" flex-1">
         <Landing />
-        {/* <Branding /> */}
-        {/* <Poster1 /> */}
+        <Branding />
+        <Poster1 />
         <div className="bg-[#FFF7F4]">
           <SalesSection />
         </div>
-        {/* <Poster2 /> */}
+        <Poster2 />
       </div>
     </div>
   );

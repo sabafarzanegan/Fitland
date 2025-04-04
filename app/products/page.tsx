@@ -1,4 +1,5 @@
 import Filterbtn from "@/components/filter/Filterbtn";
+import FilterCategorize from "@/components/filter/FilterCategorize";
 
 import LoadingProduct from "@/components/product/LoadingProduct";
 import ProductList from "@/components/product/ProductList";
@@ -14,6 +15,9 @@ async function page({
 }) {
   const categoryFilter = searchParams.filter || "";
   const brandfilter = searchParams.brand || "";
+  const category = searchParams.category || "";
+
+  console.log(category);
 
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "6";
@@ -24,14 +28,16 @@ async function page({
       <div className="flex items-center justify-between mb-14">
         <Filterbtn />
       </div>
-      <div className="flex items-center justify-center gap-x-6  mx-auto">
-        <div>
+      <div className="">
+        <div className="flex  justify-start gap-x-6  mx-auto">
+          {/* <FilterCategorize /> */}
           <Suspense fallback={<LoadingProduct />}>
             <ProductList
               page={page}
               per_page={per_page}
               categoryFilter={categoryFilter}
               brandfilter={brandfilter}
+              category={category}
             />
           </Suspense>
         </div>

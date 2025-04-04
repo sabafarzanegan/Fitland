@@ -5,17 +5,17 @@ import BrandCart from "../card/BrandCart";
 
 function Branding() {
   return (
-    <div className=" container">
-      <div className="container mt-20 flex items-end justify-between flex-wrap gap-y-6  gap-x-6 z-10 ">
+    <div className=" container mx-auto flex items-center justify-center">
+      <div className="container mx-auto mt-20 flex items-end justify-center flex-wrap gap-y-6  gap-x-6 z-10 ">
         <BrandCart
           img="/images/brand1.jpg"
-          link="/products?brand=nike"
+          link="/products?category=Nike"
           brand="nike"
         />
         <BrandCart
           img="/images/brand2.jpg"
-          link="/products?brand=nike"
-          brand="nike"
+          link="/products?category=puma"
+          brand="puma"
         />
         <div className="w-[319px] space-y-[10px] z-30 ">
           <p className="text-secondary-main text-[24px] font-bold">

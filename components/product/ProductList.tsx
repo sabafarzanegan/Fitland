@@ -8,15 +8,18 @@ async function ProductList({
   page,
   per_page,
   brandfilter,
+  category,
 }: {
   categoryFilter: string | string[];
   page: string | string[];
   per_page: string | string[];
   brandfilter: string | string[];
+  category: string | string[];
 }) {
   const allProducts = await getAllProduct(
     categoryFilter as string,
-    brandfilter
+    brandfilter,
+    category
   );
 
   const start = (Number(page) - 1) * Number(per_page);
@@ -30,7 +33,7 @@ async function ProductList({
         <span className="px-2">کالا</span>
       </p>
       <div className="flex items-center justify-center w-full ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 py-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 py-4 w-full">
           {entries?.map((product) => (
             <ProductCard
               key={product.id}
