@@ -245,6 +245,7 @@ export const getAllProduct = async (
         images: true,
         sizes: true,
         colors: true,
+        categories: true,
       },
     });
 

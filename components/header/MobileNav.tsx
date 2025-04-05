@@ -16,7 +16,7 @@ function MobileNav() {
         )}
       </div>
       <div
-        className={`w-full h-svh absolute top-[88px] backdrop-blur-2xl z-10  transition-all duration-300 ${
+        className={`w-full h-svh absolute  backdrop-blur-2xl z-10  transition-all duration-300 ${
           shownav ? "right-0" : "-right-full"
         }`}>
         <ul className="flex flex-col gap-y-4 py-4 px-6">

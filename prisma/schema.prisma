@@ -62,8 +62,6 @@ model Product {
   price         Float
   discountPrice Float? 
   comments Comment[]
-
-
   orderItems    OrderItem[] 
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt

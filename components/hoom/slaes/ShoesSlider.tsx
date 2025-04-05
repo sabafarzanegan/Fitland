@@ -9,7 +9,7 @@ import {
 } from "./EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import { getProduct } from "@/utils/type";
-import styles from "./embellaSlider.module.css";
+import styles from "../hoomcorousel/embellaSLider.module.css";
 
 import ProductCard from "@/components/card/ProductCard";
 type PropType = {
@@ -17,7 +17,7 @@ type PropType = {
   options?: EmblaOptionsType;
 };
 
-const EmbellaSlider: React.FC<PropType> = (props) => {
+const ShoesSlider: React.FC<PropType> = (props) => {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
 
@@ -36,17 +36,18 @@ const EmbellaSlider: React.FC<PropType> = (props) => {
     <section className={styles.embla} dir="ltr">
       <div className={styles.embla__viewport} ref={emblaRef}>
         <div className={styles.embla__container}>
-          {slides?.slice(0, 12).map((index) => {
-            if ((index.discountPrice as number) > 0) {
-              return (
-                <div className={styles.embla__slide} key={index.id}>
-                  <div className={styles.embla__slide__number}>
-                    <ProductCard product={index} edit={false} />
-                  </div>
+          {slides
+            ?.filter((product) =>
+              product?.categories?.some((cat) => cat.name === "کفش")
+            )
+            .slice(0, 16)
+            .map((product) => (
+              <div className={styles.embla__slide} key={product.id}>
+                <div>
+                  <ProductCard product={product} edit={false} />
                 </div>
-              );
-            }
-          })}
+              </div>
+            ))}
         </div>
       </div>
 
@@ -60,4 +61,4 @@ const EmbellaSlider: React.FC<PropType> = (props) => {
   );
 };
 
-export default EmbellaSlider;
+export default ShoesSlider;
