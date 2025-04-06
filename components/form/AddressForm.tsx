@@ -11,6 +11,7 @@ import { FormAddress } from "@/utils/type";
 import { Loader2 } from "lucide-react";
 import { Input } from "../ui/Input/Input";
 import { formAddressSchema } from "@/utils/schema";
+import { useRouter } from "next/navigation";
 
 function AddressForm({
   id,
@@ -19,6 +20,7 @@ function AddressForm({
   id: string | undefined;
   addressInfo: FormAddress;
 }) {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formAddressSchema>>({
     resolver: zodResolver(formAddressSchema),
 
@@ -37,6 +39,10 @@ function AddressForm({
     try {
       if (id) {
         const res = await saveUserAddress(values, id);
+        if (res?.isSuccess) {
+          toast.success(res.message);
+          router.refresh();
+        }
       } else {
         toast.error("آیدی کاربر نامعتبر است.", {
           className: "text-white bg-cinnabar-500 ",

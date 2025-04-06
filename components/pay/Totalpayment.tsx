@@ -39,18 +39,19 @@ function Totalpayment({ addressId, userId }: props) {
       };
     }),
   };
+
   const router = useRouter();
   const handleorder = async () => {
     try {
       setIsLoading(true);
       const res = await createOrderByUser(orderData);
       if (res.success) {
+        router.push("/checkout/status");
         toast.success("سفارش شما با موفقیت ثبت شد");
         clearCart();
-        router.push("/checkout/status");
       } else {
-        toast.error("شکست در ثبت سفارش لطفا دوباره تلاش کنید");
         router.push("/checkout/status");
+        toast.error("شکست در ثبت سفارش لطفا دوباره تلاش کنید");
       }
       setIsLoading(false);
     } catch (error) {
@@ -67,9 +68,10 @@ function Totalpayment({ addressId, userId }: props) {
       </div>
 
       <button
+        disabled={cart?.length == 0 || !orderData.userId}
         onClick={handleorder}
         type="submit"
-        className="w-full bg-primary-main text-white py-3 rounded-[8px]">
+        className="w-full bg-primary-main text-white py-3 rounded-[8px] disabled:bg-primary-700">
         {isLoading ? <Loader2 className="animate-spin mx-auto" /> : "پرداخت"}
       </button>
       <Toaster />

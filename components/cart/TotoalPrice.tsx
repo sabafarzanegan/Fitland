@@ -51,7 +51,9 @@ function TotoalPrice() {
         </div>
       </div>
       <Link href="/checkout/location">
-        <button className="w-full mx-auto bg-primary-main text-white h-[48px] rounded-[8px]">
+        <button
+          disabled={cart.length === 0}
+          className="w-full mx-auto bg-primary-main text-white h-[48px] rounded-[8px] disabled:bg-primary-850">
           تکمیل فرآیند پرداخت
         </button>
       </Link>
