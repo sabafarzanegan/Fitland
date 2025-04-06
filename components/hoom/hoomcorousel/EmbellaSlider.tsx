@@ -6,10 +6,10 @@ import {
   PrevButton,
   NextButton,
   usePrevNextButtons,
-} from "./EmblaCarouselArrowButtons";
+} from "../hoomcorousel/EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import { getProduct } from "@/utils/type";
-import styles from "./embellaSlider.module.css";
+import styles from "./embellaSLider.module.css";
 
 import ProductCard from "@/components/card/ProductCard";
 type PropType = {
@@ -40,7 +40,7 @@ const EmbellaSlider: React.FC<PropType> = (props) => {
             if ((index.discountPrice as number) > 0) {
               return (
                 <div className={styles.embla__slide} key={index.id}>
-                  <div className={styles.embla__slide__number}>
+                  <div>
                     <ProductCard product={index} edit={false} />
                   </div>
                 </div>

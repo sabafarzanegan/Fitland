@@ -6,10 +6,10 @@ import {
   PrevButton,
   NextButton,
   usePrevNextButtons,
-} from "./EmblaCarouselArrowButtons";
+} from "../hoomcorousel/EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import { getProduct } from "@/utils/type";
-import styles from "../hoomcorousel/embellaSLider.module.css";
+import styles from "./embellaSLiderShoes.module.css";
 
 import ProductCard from "@/components/card/ProductCard";
 type PropType = {

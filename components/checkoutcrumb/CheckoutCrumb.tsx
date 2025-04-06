@@ -4,7 +4,7 @@ import {
   BreadcrumbItem,
   BreadcrumbList,
 } from "@/components/ui/breadcrumb/breadcrumb";
-import { Image } from "lucide-react";
+import Image from "next/image";
 
 import { usePathname } from "next/navigation";
 
@@ -22,7 +22,12 @@ function CheckoutCrumb() {
             } 
           `}>
             <div className="">
-              <img src="/images/shopping-cart2.svg" alt="" />
+              <Image
+                width={24}
+                height={24}
+                src="/images/shopping-cart2.svg"
+                alt=""
+              />
             </div>
             <p className={`text-[12px] text-secondary-400`}>سبد خرید</p>
           </BreadcrumbItem>
@@ -33,7 +38,12 @@ function CheckoutCrumb() {
               "border-b-2 border-b-secondary-300 pb-1"
             }`}>
             <div>
-              <img src="/images/location-add.svg" alt="" />
+              <Image
+                width={24}
+                height={24}
+                src="/images/location-add.svg"
+                alt=""
+              />
             </div>
             <p className={`text-[12px] text-secondary-400`}>ثبت نشانی</p>
           </BreadcrumbItem>
@@ -44,7 +54,12 @@ function CheckoutCrumb() {
               "border-b-2 border-b-secondary-300 pb-1"
             }`}>
             <div>
-              <img src="/images/empty-wallet.svg" alt="" />
+              <Image
+                width={24}
+                height={24}
+                src="/images/empty-wallet.svg"
+                alt=""
+              />
             </div>
             <p className="text-[12px] text-secondary-400 ">پرداخت</p>
           </BreadcrumbItem>
