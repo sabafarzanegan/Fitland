@@ -21,6 +21,9 @@ async function ProductList({
     brandfilter,
     category
   );
+  console.log(categoryFilter, brandfilter);
+
+  console.log(allProducts);
 
   const start = (Number(page) - 1) * Number(per_page);
   const end = start + Number(per_page);

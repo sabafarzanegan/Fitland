@@ -1,5 +1,5 @@
 import ProductCard from "@/components/card/ProductCard";
-import ProductList from "@/components/product/ProductList";
+
 import { searchHandler } from "@/utils/actions";
 import Image from "next/image";
 

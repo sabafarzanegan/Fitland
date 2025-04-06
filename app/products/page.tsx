@@ -1,9 +1,6 @@
 import Filterbtn from "@/components/filter/Filterbtn";
-import FilterCategorize from "@/components/filter/FilterCategorize";
-
 import LoadingProduct from "@/components/product/LoadingProduct";
 import ProductList from "@/components/product/ProductList";
-
 import React, { Suspense } from "react";
 
 async function page({
@@ -16,8 +13,6 @@ async function page({
   const categoryFilter = searchParams.filter || "";
   const brandfilter = searchParams.brand || "";
   const category = searchParams.category || "";
-
-  console.log(category);
 
   const page = searchParams["page"] ?? "1";
   const per_page = searchParams["per_page"] ?? "6";
