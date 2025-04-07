@@ -1,9 +1,9 @@
 "use client";
 import { calcDiscount } from "@/utils/lib";
 import { getProduct } from "@/utils/type";
-import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import ShowStars from "../comments/ShowStars";
 
 function ProductCard({
   product,
@@ -22,9 +22,10 @@ function ProductCard({
           {/* image product */}
           <div className=" w-full h-[280px] relative ">
             <Image
-              src={product?.images[0].url as string}
+              src={product?.images[0]?.url as string}
               fill
               alt=""
+              loading="lazy"
               className="w-full h-full overflow-hidden rounded-t-[16px]"
             />
             {product?.discountPrice && (
@@ -39,9 +40,7 @@ function ProductCard({
               <p className="text-body-4 text-secondary-900">{product?.name}</p>
               {!edit && (
                 <div className="flex items-center gap-x-[5px]">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star className="w-[13px] h-[13px]" key={i} />
-                  ))}
+                  {/* <ShowStars productId={product.id} /> */}
                 </div>
               )}
             </div>

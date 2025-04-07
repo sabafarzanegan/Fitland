@@ -8,14 +8,14 @@ interface propsType {
 
 async function OrderCart({ item }: propsType) {
   const product = await getProductById(item.productId);
-  const size = await getSize(item.sizeId);
-  const color = await getColor(item.colorId);
+  const size = await getSize(item?.sizeId as string);
+  const color = await getColor(item?.colorId as string);
 
   return (
     <div className="flex flex-col items-center justify-center gap-y-2 mt-2">
       <div>
         <Image
-          src={product?.images[0].url as string}
+          src={product?.images[0]?.url as string}
           alt=""
           width={100}
           height={100}

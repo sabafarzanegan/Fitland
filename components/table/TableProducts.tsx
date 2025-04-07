@@ -48,13 +48,15 @@ function TableProducts({ entries }: { entries: getProduct[] | undefined }) {
           {entries?.map((item) => (
             <TableRow key={item.id} className="mb-3">
               <TableCell className="w-[30%] h-[30%]">
-                <Image
-                  src={item.images[0]?.url}
-                  alt=""
-                  width={50}
-                  height={50}
-                  className=""
-                />
+                <Link href={`/products/${item.id}`}>
+                  <Image
+                    src={item.images[0]?.url}
+                    alt=""
+                    width={50}
+                    height={50}
+                    className=""
+                  />
+                </Link>
               </TableCell>
               <TableCell className="text-[12px] md:text-md">
                 {item.name}

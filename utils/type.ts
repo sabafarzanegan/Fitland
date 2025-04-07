@@ -74,9 +74,9 @@ interface orderItem {
   orderId?: string;
   productId: string;
   size?: string;
-  sizeId: string;
+  sizeId: string | null;
   color?: string;
-  colorId: string;
+  colorId: string | null;
   quantity: number;
   price: number | undefined;
 }

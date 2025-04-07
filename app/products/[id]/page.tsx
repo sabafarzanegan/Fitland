@@ -1,8 +1,4 @@
-import FavoriteForm from "@/components/favorites/FavoriteForm";
 import ProductAd from "@/components/product/advertize/ProductAd";
-import DescriptonProduct from "@/components/product/DescriptonProduct";
-import ProductFeature from "@/components/product/ProductFeature";
-import ShareButton from "@/components/product/ShareButton";
 import { getProductById, getUserInfo } from "@/utils/actions";
 import { getProduct } from "@/utils/type";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -17,7 +13,22 @@ const Commentsection = dynamic(
   () => import("@/components/comments/Commentsection"),
   { ssr: false }
 );
-
+const ProductFeature = dynamic(
+  () => import("@/components/product/ProductFeature"),
+  { ssr: false }
+);
+const DescriptonProduct = dynamic(
+  () => import("@/components/product/DescriptonProduct"),
+  { ssr: false }
+);
+const FavoriteForm = dynamic(
+  () => import("@/components/favorites/FavoriteForm"),
+  { ssr: false }
+);
+const ShareButton = dynamic(() => import("@/components/product/ShareButton"), {
+  ssr: false,
+});
+const ShowStars = dynamic(() => import("@/components/comments/ShowStars"));
 async function page({ params }: { params: { id: string | undefined } }) {
   const product = await getProductById(params.id as string);
   const { getUser } = getKindeServerSession();
@@ -33,19 +44,22 @@ async function page({ params }: { params: { id: string | undefined } }) {
             product={product as getProduct}
             userId={userInfo?.id}
           />
+
           <div className="flex items-center gap-x-4">
             {user && (
-              <FavoriteForm productId={params.id} userId={userInfo?.id} />
+              <FavoriteForm productId={params?.id} userId={userInfo?.id} />
             )}
-            <ShareButton productId={params.id} />
+            <ShareButton productId={params?.id} />
+            <ShowStars productId={product?.id} />
           </div>
         </div>
       </div>
+
       <div className="border border-neutral-400 p-8 mt-8 rounded-[8px]">
         <DescriptonProduct>{product?.description as string}</DescriptonProduct>
       </div>
       {/* coommetns section */}
-      <Commentsection productId={params.id} />
+      <Commentsection productId={params?.id} />
       <ProductAd />
     </div>
   );

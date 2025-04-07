@@ -15,6 +15,7 @@ export const Thumb: React.FC<PropType> = ({ selected, url, onClick }) => {
       }`}
       onClick={onClick}>
       <Image
+        loading="lazy"
         src={url}
         width={80}
         height={80}

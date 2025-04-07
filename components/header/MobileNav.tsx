@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu, Plus } from "lucide-react";
 import { menueItem } from "@/assets/helper/helper";
 import Link from "next/link";
+import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 function MobileNav() {
   const [shownav, setShowNav] = useState(false);
   return (
@@ -19,7 +20,7 @@ function MobileNav() {
         className={`w-full h-svh absolute  backdrop-blur-2xl z-10  transition-all duration-300 ${
           shownav ? "right-0" : "-right-full"
         }`}>
-        <ul className="flex flex-col gap-y-4 py-4 px-6">
+        <ul className="flex flex-col gap-y-4 py-4 px-6 border-b-2 border-b-gray-400">
           <Link onClick={() => setShowNav((prev) => !prev)} href="/products">
             <li>محصولات</li>
           </Link>
@@ -33,7 +34,23 @@ function MobileNav() {
               </li>
             </Link>
           ))}
-        </ul>
+        </ul>{" "}
+        <div className="space-y-2 px-6 mt-3">
+          <div>
+            <LoginLink>
+              <button className="bg-secondary-main text-white w-full py-2 rounded-lg">
+                ورود
+              </button>
+            </LoginLink>
+          </div>
+          <div>
+            <RegisterLink>
+              <button className="bg-primary-main text-white w-full py-2 rounded-lg">
+                ثبت نام
+              </button>
+            </RegisterLink>
+          </div>
+        </div>
       </div>
     </>
   );

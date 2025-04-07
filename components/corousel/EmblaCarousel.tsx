@@ -49,7 +49,8 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             <div className="embla__slide" key={index.id}>
               <div className="embla__slide__number">
                 <Image
-                  alt=""
+                  alt="product"
+                  loading="lazy"
                   width={600}
                   height={380}
                   src={index.url}

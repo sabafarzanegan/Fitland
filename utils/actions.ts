@@ -330,6 +330,7 @@ export const updateProductById = async (
         categoryName: formdata.category,
         price: Number(formdata.price),
         discountPrice: Number(formdata.discountPrice),
+        description: formdata.description,
         categories: {
           connect: selectedCategories?.map((category) => ({
             id: category.id,
@@ -429,10 +430,10 @@ export const createOrderByUser = async (orderData: orderData) => {
                 connect: { id: item.productId },
               },
               size: {
-                connect: { id: item.sizeId },
+                connect: { id: item.sizeId as string },
               },
               color: {
-                connect: { id: item.colorId },
+                connect: { id: item.colorId as string },
               },
               quantity: item.quantity,
               price: item.price as number,
@@ -733,6 +734,22 @@ export const searchHandler = async (query: string | undefined) => {
     });
     console.log(products);
     return products;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getStarByProductId = async (productId: string | undefined) => {
+  try {
+    const res = await db.product.findFirst({
+      where: {
+        id: productId,
+      },
+      include: {
+        comments: true,
+      },
+    });
+    return res;
   } catch (error) {
     console.log(error);
   }

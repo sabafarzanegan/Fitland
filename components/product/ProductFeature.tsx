@@ -1,10 +1,11 @@
 "use client";
 import { calcDiscount } from "@/utils/lib";
 import { getProduct } from "@/utils/type";
-import React, { useState } from "react";
-import CartBtn from "../cart/CartBtn";
+import React, { useMemo, useState } from "react";
 import { Check } from "lucide-react";
-import FavoriteForm from "../favorites/FavoriteForm";
+import dynamic from "next/dynamic";
+const CartBtn = dynamic(() => import("../cart/CartBtn"), { ssr: false });
+
 function ProductFeature({
   product,
   userId,
@@ -12,20 +13,27 @@ function ProductFeature({
   product: getProduct;
   userId: string | undefined;
 }) {
-  const [selecedSize, setSelectedSize] = useState(product?.sizes[0]);
-  const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
-  const selectedProduct = {
-    productId: product.id,
-    size: selecedSize.value,
-    sizeId: selecedSize.id,
-    color: selectedColor.hex,
-    colorId: selectedColor.id,
-    price: product.price,
-    discountPrice: product.discountPrice,
-    image: product.images[0].url,
-    name: product.name,
-  };
+  const [selecedSize, setSelectedSize] = useState(
+    () => product?.sizes?.[0] || null
+  );
+  const [selectedColor, setSelectedColor] = useState(
+    () => product?.colors?.[0] || null
+  );
 
+  const selectedProduct = useMemo(
+    () => ({
+      productId: product.id,
+      size: selecedSize?.value,
+      sizeId: selecedSize?.id,
+      color: selectedColor?.hex,
+      colorId: selectedColor?.id,
+      price: product.price,
+      discountPrice: product.discountPrice,
+      image: product.images[0]?.url,
+      name: product.name,
+    }),
+    [selecedSize, selectedColor, product]
+  );
   return (
     <div className="mt-[21px]">
       {/* title */}
