@@ -13,7 +13,7 @@ function page() {
         <Landing />
         <Branding />
         <Poster1 />
-        <div className="bg-[#FFF7F4]">
+        <div className="bg-[#FFF7F4] py-3">
           <SalesSection />
         </div>
         <Poster2 />

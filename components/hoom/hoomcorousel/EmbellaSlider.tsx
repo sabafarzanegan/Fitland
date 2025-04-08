@@ -2,16 +2,16 @@
 import React, { useEffect } from "react";
 import { EmblaOptionsType } from "embla-carousel";
 
-import {
-  PrevButton,
-  NextButton,
-  usePrevNextButtons,
-} from "../hoomcorousel/EmblaCarouselArrowButtons";
 import useEmblaCarousel from "embla-carousel-react";
 import { getProduct } from "@/utils/type";
 import styles from "./embellaSLider.module.css";
 
 import ProductCard from "@/components/card/ProductCard";
+import {
+  NextButton,
+  PrevButton,
+  usePrevNextButtons,
+} from "./EmblaCarouselArrowButtons";
 type PropType = {
   slides: getProduct[] | undefined;
   options?: EmblaOptionsType;
@@ -28,9 +28,17 @@ const EmbellaSlider: React.FC<PropType> = (props) => {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
   useEffect(() => {
-    if (emblaApi) {
-      emblaApi.reInit();
-    }
+    if (!emblaApi) return;
+
+    const autoplayInterval = setInterval(() => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0);
+      }
+    }, 2000);
+
+    return () => clearInterval(autoplayInterval);
   }, [emblaApi]);
   return (
     <section className={styles.embla} dir="ltr">

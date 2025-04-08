@@ -28,9 +28,17 @@ const ShoesSlider: React.FC<PropType> = (props) => {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
   useEffect(() => {
-    if (emblaApi) {
-      emblaApi.reInit();
-    }
+    if (!emblaApi) return;
+
+    const autoplayInterval = setInterval(() => {
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext();
+      } else {
+        emblaApi.scrollTo(0); 
+      }
+    }, 2000); 
+
+    return () => clearInterval(autoplayInterval);
   }, [emblaApi]);
   return (
     <section className={styles.embla} dir="ltr">

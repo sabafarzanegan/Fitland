@@ -35,7 +35,7 @@ function ProductCard({
             )}
           </div>
           {/* caption product */}
-          <div className=" text-secondary-900 py-3 space-y-4 px-3">
+          <div className=" text-secondary-900 py-3 space-y-4 px-3 ">
             <div className="flex items-center justify-between">
               <p className="text-body-4 text-secondary-900">{product?.name}</p>
               {!edit && (
@@ -77,7 +77,7 @@ function ProductCard({
               <div
                 key={cls?.id}
                 style={{ backgroundColor: cls.name }}
-                className=" w-5 h-5  rounded-full"></div>
+                className=" w-5 h-5  rounded-full "></div>
             ))}
           </div>
           <div></div>

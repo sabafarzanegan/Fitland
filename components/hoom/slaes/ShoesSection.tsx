@@ -7,7 +7,7 @@ async function ShoesSection() {
     <div>
       <div className="my-20 w-full">
         <h1 className="text-secondary-700 font-bold text-[32px] flex items-center justify-center mb-10 py-2">
-          کفش های ورزشی
+          جدید ترین کفش های ورزشی
         </h1>
         <ShoesSlider slides={products} />
       </div>

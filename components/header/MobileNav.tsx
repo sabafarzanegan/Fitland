@@ -22,7 +22,7 @@ function MobileNav() {
         }`}>
         <ul className="flex flex-col gap-y-4 py-4 px-6 border-b-2 border-b-gray-400">
           <Link onClick={() => setShowNav((prev) => !prev)} href="/products">
-            <li>محصولات</li>
+            <li className="text-lg">محصولات</li>
           </Link>
           {menueItem.map((item) => (
             <Link
