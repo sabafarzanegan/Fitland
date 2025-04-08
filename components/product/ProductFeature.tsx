@@ -58,11 +58,13 @@ function ProductFeature({
             } `}>
             {product?.price.toLocaleString("fa-IR")}تومان
           </p>
-          <div className="w-[62px] h-[36px] rounded-[8px] bg-primary-main text-white flex items-center justify-center">
-            <span>
-              {calcDiscount(product?.price, product?.discountPrice || 0)}%
-            </span>
-          </div>
+          {(product?.discountPrice as number) > 0 && (
+            <div className="w-[62px] h-[36px] rounded-[8px] bg-primary-main text-white flex items-center justify-center">
+              <span>
+                {calcDiscount(product?.price, product?.discountPrice || 0)}%
+              </span>
+            </div>
+          )}
         </div>
       </div>
       {/* size */}

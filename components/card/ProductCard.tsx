@@ -3,7 +3,6 @@ import { calcDiscount } from "@/utils/lib";
 import { getProduct } from "@/utils/type";
 import Image from "next/image";
 import Link from "next/link";
-import ShowStars from "../comments/ShowStars";
 
 function ProductCard({
   product,
@@ -17,8 +16,8 @@ function ProductCard({
       <Link
         href={`/products/${product?.id}`}
         dir="rtl"
-        className="mx-auto w-[300px]">
-        <div className=" rounded-[16px] overflow-hidden  w-full max-h-[600px] h-full  border mx-auto ">
+        className="mx-auto w-[300px] shadow-lg overflow-hidden rounded-[12px]">
+        <div className="  overflow-hidden  w-full max-h-[600px] h-full  border mx-auto ">
           {/* image product */}
           <div className=" w-full h-[280px] relative ">
             <Image
@@ -26,11 +25,11 @@ function ProductCard({
               fill
               alt=""
               loading="lazy"
-              className="w-full h-full overflow-hidden rounded-t-[16px]"
+              className="w-full h-full overflow-hidden rounded-t-[12px]"
             />
             {product?.discountPrice && (
               <div className="w-[72px] h-[29px] bg-primary-main absolute flex items-center justify-center rounded-bl-[16px] text-white text-body-5 ">
-                {calcDiscount(product?.price, product?.discountPrice || 0)}%
+                {calcDiscount(product?.price, product?.discountPrice)}%
               </div>
             )}
           </div>
@@ -72,7 +71,7 @@ function ProductCard({
               )}
             </div>
           </div>
-          <div className=" w-24 h-10 flex items-center justify-center">
+          <div className=" w-24 h-10 flex items-center justify-center px-4  ">
             {product.colors.map((cls) => (
               <div
                 key={cls?.id}
