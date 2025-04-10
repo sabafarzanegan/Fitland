@@ -11,9 +11,7 @@ async function page({
   };
 }) {
   const searchQuery = searchParams.query || "";
-  console.log(searchQuery);
   const products = await searchHandler(searchQuery as string);
-  console.log(products);
 
   if (!products?.length) {
     return (
@@ -36,9 +34,9 @@ async function page({
   }
 
   return (
-    <div className="min-h-screen container w-full mt-10">
+    <div className="min-h-screen container w-full mt-10 py-10">
       <h1 className="font-semibold  text-secondary-main ">{`نتایج جستجوی شما برای ${searchQuery}`}</h1>
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 mt-8 gap-4">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 mt-8 gap-2 mx-auto">
         {products?.map((item) => (
           <ProductCard product={item} edit={false} key={item.id} />
         ))}

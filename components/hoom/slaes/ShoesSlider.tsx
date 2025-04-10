@@ -34,9 +34,9 @@ const ShoesSlider: React.FC<PropType> = (props) => {
       if (emblaApi.canScrollNext()) {
         emblaApi.scrollNext();
       } else {
-        emblaApi.scrollTo(0); 
+        emblaApi.scrollTo(0);
       }
-    }, 2000); 
+    }, 5000);
 
     return () => clearInterval(autoplayInterval);
   }, [emblaApi]);

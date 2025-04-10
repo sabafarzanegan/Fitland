@@ -11,6 +11,9 @@ function Search({ inpage }: { inpage: boolean }) {
     e.preventDefault();
     if (query.trim() !== "") {
       router.push(`/search?query=${query}`);
+      setTimeout(() => {
+        setQuery("");
+      }, 3000);
     }
   };
 

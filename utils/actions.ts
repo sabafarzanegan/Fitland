@@ -67,6 +67,23 @@ export const getUserInfo = async (id: string) => {
     console.log(error);
   }
 };
+
+export const getUserInfoForOrder = async (id: string | undefined) => {
+  try {
+    const userInfo = await db.user.findFirst({
+      where: {
+        id: id,
+      },
+      select: {
+        email: true,
+        name: true,
+      },
+    });
+    return userInfo;
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const getUserforComment = async (userId: string | undefined) => {
   try {
     const res = await db.user.findFirst({

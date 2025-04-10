@@ -14,7 +14,7 @@ function BrandCart({
   return (
     <Link href={link} className="w-[360px] h-[450px]">
       <div className=" w-full h-full relative z-40">
-        <div className=" w-full h-full relative rounded-2xl overflow-hidden">
+        <div className=" w-full h-full relative rounded-2xl overflow-hidden aspect-square">
           <Image src={img} fill alt="" />
         </div>
         <div className="w-full rounded-2xl bg-secondary-main text-[18px] flex  items-center px-4 right-0 py-16 bottom-0 text-white card-clip absolute">

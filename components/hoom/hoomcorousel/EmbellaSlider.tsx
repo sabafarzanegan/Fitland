@@ -36,7 +36,7 @@ const EmbellaSlider: React.FC<PropType> = (props) => {
       } else {
         emblaApi.scrollTo(0);
       }
-    }, 2000);
+    }, 5000);
 
     return () => clearInterval(autoplayInterval);
   }, [emblaApi]);

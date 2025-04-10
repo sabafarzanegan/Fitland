@@ -7,25 +7,24 @@ import {
   TableRow,
   TableCell,
 } from "../ui/table/Table";
-import { getUserInfo } from "@/utils/actions";
+import { getUserInfo, getUserInfoForOrder } from "@/utils/actions";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Link from "next/link";
 
 async function TableOrderAdmin({ order }: { order: orderData }) {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
-  const userInfo = await getUserInfo(user?.id);
+  console.log(order);
+  const userInfo = await getUserInfoForOrder(order?.userId as string);
   console.log(userInfo);
   console.log(order?.createdAt?.toLocaleString("fa-IR").toString().split(","));
 
   return (
     <div>
-      <Table>
+      <Table className="">
         <TableHeader className="w-full">
           <TableRow>
-            <TableHead className="px-0 text-right">سفارش دهنده</TableHead>
+            <TableHead className="px-0 text-right">نام</TableHead>
             <TableHead className="px-0 text-right">مبلغ</TableHead>
-            <TableHead className="px-0 text-right">تاریخ سفارش</TableHead>
+            <TableHead className="px-0 text-right">تاریخ</TableHead>
             <TableHead className="px-0 text-right">جزئیات</TableHead>
           </TableRow>
         </TableHeader>
@@ -46,7 +45,11 @@ async function TableOrderAdmin({ order }: { order: orderData }) {
               }
             </TableCell>
             <TableCell>
-              <Link href={`/dashboard/manage/${order?.id}`}>مشاهده</Link>
+              <Link
+                href={`/dashboard/manage/${order?.id}`}
+                className="p-1 bg-secondary-300 rounded-md text-white">
+                مشاهده
+              </Link>
             </TableCell>
           </TableRow>
         </TableBody>
