@@ -74,6 +74,7 @@ function ProductCard({
                 )}
               </div>
             </div>
+
             <div className=" w-24 h-10 flex items-center justify-center px-4  ">
               {product.colors.map((cls) => (
                 <div
@@ -83,8 +84,6 @@ function ProductCard({
               ))}
             </div>
           </div>
-
-          <div></div>
         </div>
       </Link>
     </>

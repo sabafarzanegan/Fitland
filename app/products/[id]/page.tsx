@@ -1,34 +1,16 @@
+import Commentsection from "@/components/comments/Commentsection";
+import ShowStars from "@/components/comments/ShowStars";
+import EmblaCarousel from "@/components/corousel/EmblaCarousel";
+import FavoriteForm from "@/components/favorites/FavoriteForm";
 import ProductAd from "@/components/product/advertize/ProductAd";
+import DescriptonProduct from "@/components/product/DescriptonProduct";
+import ProductFeature from "@/components/product/ProductFeature";
+import ShareButton from "@/components/product/ShareButton";
 import { getProductById, getUserInfo } from "@/utils/actions";
 import { getProduct } from "@/utils/type";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { EmblaOptionsType } from "embla-carousel";
-import dynamic from "next/dynamic";
 
-const EmblaCarousel = dynamic(
-  () => import("@/components/corousel/EmblaCarousel"),
-  { ssr: false }
-);
-const Commentsection = dynamic(
-  () => import("@/components/comments/Commentsection"),
-  { ssr: false }
-);
-const ProductFeature = dynamic(
-  () => import("@/components/product/ProductFeature"),
-  { ssr: false }
-);
-const DescriptonProduct = dynamic(
-  () => import("@/components/product/DescriptonProduct"),
-  { ssr: false }
-);
-const FavoriteForm = dynamic(
-  () => import("@/components/favorites/FavoriteForm"),
-  { ssr: false }
-);
-const ShareButton = dynamic(() => import("@/components/product/ShareButton"), {
-  ssr: false,
-});
-const ShowStars = dynamic(() => import("@/components/comments/ShowStars"));
 async function page({ params }: { params: { id: string | undefined } }) {
   const product = await getProductById(params.id as string);
   const { getUser } = getKindeServerSession();

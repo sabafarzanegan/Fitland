@@ -1,7 +1,7 @@
 "use client";
 import { calcDiscount } from "@/utils/lib";
 import { getProduct } from "@/utils/type";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Check } from "lucide-react";
 import dynamic from "next/dynamic";
 const CartBtn = dynamic(() => import("../cart/CartBtn"), { ssr: false });
@@ -20,20 +20,18 @@ function ProductFeature({
     () => product?.colors?.[0] || null
   );
 
-  const selectedProduct = useMemo(
-    () => ({
-      productId: product.id,
-      size: selecedSize?.value,
-      sizeId: selecedSize?.id,
-      color: selectedColor?.hex,
-      colorId: selectedColor?.id,
-      price: product.price,
-      discountPrice: product.discountPrice,
-      image: product.images[0]?.url,
-      name: product.name,
-    }),
-    [selecedSize, selectedColor, product]
-  );
+  const selectedProduct = {
+    productId: product.id,
+    size: selecedSize?.value,
+    sizeId: selecedSize?.id,
+    color: selectedColor?.hex,
+    colorId: selectedColor?.id,
+    price: product.price,
+    discountPrice: product.discountPrice,
+    image: product.images[0]?.url,
+    name: product.name,
+  };
+
   return (
     <div className="mt-[21px]">
       {/* title */}
