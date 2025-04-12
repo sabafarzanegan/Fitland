@@ -8,13 +8,12 @@ import React from "react";
 async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  console.log(user);
 
   if (!user) {
     return redirect("/auth/sign-in");
   }
   const res = await getCommentForUser(user?.id);
-  console.log(res);
+
   const userInfo = await getUserInfo(user?.id);
 
   if (!res?.comments?.length) {

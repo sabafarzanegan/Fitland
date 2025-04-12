@@ -1,6 +1,7 @@
 "use client";
 
 import { Loader2 } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { toast, Toaster } from "sonner";
@@ -10,8 +11,6 @@ function ImageUploader() {
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [imageUrls, setImageUrls] = useState<{ url: string }[]>([]);
   const [isLoading, setIsloading] = useState(false);
-
-  console.log(images);
 
   const {
     register,
@@ -31,7 +30,6 @@ function ImageUploader() {
   };
 
   const watchImage = useWatch({ name: "images" });
-  console.log(watchImage);
 
   useEffect(() => {
     if (watchImage) {
@@ -42,7 +40,6 @@ function ImageUploader() {
       setImages(urls);
     }
   }, [watchImage]);
-  console.log(images);
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
@@ -116,7 +113,9 @@ function ImageUploader() {
       <div className="flex flex-wrap gap-2 mt-4">
         {previewUrls.map((url, index) => (
           <div key={index} className="relative">
-            <img
+            <Image
+              width={20}
+              height={20}
               src={url}
               alt="preview"
               className="w-20 h-20 object-cover rounded-md"

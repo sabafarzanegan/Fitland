@@ -290,6 +290,7 @@ export const getProductById = async (id: string) => {
         categories: true,
       },
     });
+    console.log(product);
 
     return product;
   } catch (error) {

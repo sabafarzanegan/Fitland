@@ -13,7 +13,6 @@ async function Commentsection({
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   const userInfo = await getUserInfo(user?.id);
-  console.log(user);
 
   const userInformation = {
     id: userInfo?.id,

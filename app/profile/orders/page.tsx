@@ -1,6 +1,5 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { getOrderByUser, getUserInfo } from "@/utils/actions";
-import OrderCart from "@/components/card/OrderCart";
 import UserOrders from "@/components/order/UserOrders";
 import { redirect } from "next/navigation";
 import Image from "next/image";
@@ -25,7 +24,6 @@ async function page() {
       </div>
     );
   }
-  console.log(ordersInfo);
 
   return (
     <div className="space-y-6">

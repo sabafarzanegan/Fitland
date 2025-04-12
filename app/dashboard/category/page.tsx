@@ -1,13 +1,11 @@
 import SubmitBtn from "@/components/button/SubmitBtn";
 import CategoryItem from "@/components/category/CategoryItem";
 import { Input } from "@/components/ui/Input/Input";
-import { addCategory, deletCategory, getCategories } from "@/utils/actions";
-import { Plus } from "lucide-react";
+import { addCategory, getCategories } from "@/utils/actions";
 import React from "react";
 
 async function page() {
   const categories = await getCategories();
-  console.log(categories);
 
   return (
     <div>

@@ -3,7 +3,6 @@ import { commentSchema } from "@/utils/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Input } from "../ui/Input/Input";
 import { TextArea } from "../ui/Input/TextArea";
 import { useState } from "react";
 import { Loader2, Star } from "lucide-react";
@@ -32,7 +31,6 @@ function AddComment({ userInformation, productId }: props) {
     },
   });
   async function onSubmit(values: z.infer<typeof commentSchema>) {
-    console.log(values);
     try {
       const res = await addComment({ values, rating });
       if (res?.success) {

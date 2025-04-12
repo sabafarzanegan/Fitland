@@ -4,7 +4,7 @@ import React from "react";
 
 async function page() {
   const categories = await getCategories();
-  console.log(categories);
+
 
   return (
     <div>

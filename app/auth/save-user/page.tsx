@@ -5,10 +5,8 @@ import { redirect } from "next/navigation";
 async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  console.log(user);
 
   if (!user) {
-    console.log("❌ کاربر لاگین نیست، هدایت به صفحه لاگین...");
     redirect("/auth/sign-in");
   }
   const formData = {
@@ -23,7 +21,7 @@ async function page() {
     return redirect("/");
   } else {
     const res = await addUserIndb(formData);
-    console.log(res);
+
     if (res?.isSuccess) {
       return redirect("/");
     }

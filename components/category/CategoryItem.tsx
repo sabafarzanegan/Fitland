@@ -8,8 +8,6 @@ function CategoryItem({
 }: {
   categories: { id: string; name: string }[] | undefined;
 }) {
-  console.log(categories);
-
   return (
     <div className="flex items-center flex-wrap gap-y-2 gap-x-4 mt-4">
       {categories?.map((item) => (

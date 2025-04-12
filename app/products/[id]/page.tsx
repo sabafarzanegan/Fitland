@@ -13,6 +13,7 @@ import { EmblaOptionsType } from "embla-carousel";
 
 async function page({ params }: { params: { id: string | undefined } }) {
   const product = await getProductById(params.id as string);
+
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   const userInfo = await getUserInfo(user?.id);

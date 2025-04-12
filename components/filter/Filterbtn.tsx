@@ -1,5 +1,6 @@
 "use client";
 import { filterProduct } from "@/assets/helper/helper";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -24,7 +25,7 @@ function Filterbtn() {
         <button
           onClick={() => setIsShowFilter((prev) => !prev)}
           className="flex items-center gap-x-[2px] text-[15px] ">
-          <img src="/images/sort.svg" alt="" />
+          <Image width={10} height={10} src="/images/sort.svg" alt="" />
           <span>مرتب سازی بر اساس</span>
         </button>
       </div>

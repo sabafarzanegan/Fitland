@@ -1,13 +1,10 @@
-import { getUserforComment, getUserInfo } from "@/utils/actions";
+import { getUserforComment } from "@/utils/actions";
 import { getComment } from "@/utils/type";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Star } from "lucide-react";
 import Image from "next/image";
 
 async function CommentItem({ item }: { item: getComment }) {
-  console.log(item);
   const user = await getUserforComment(item.userId);
-  console.log(user);
 
   return (
     <div className="border py-6 rounded-md flex-1 w-full">

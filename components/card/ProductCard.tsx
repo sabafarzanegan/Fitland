@@ -14,7 +14,7 @@ function ProductCard({
   return (
     <>
       <Link
-        href={`/products/${product?.id}  overflow-hidden `}
+        href={`/products/${product?.id}`}
         dir="rtl"
         className="mx-auto w-[300px]  overflow-hidden ">
         <div className="  overflow-hidden  w-full max-h-[600px] h-full border rounded-[12px]  mx-auto ">

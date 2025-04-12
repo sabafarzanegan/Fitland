@@ -13,8 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createProduct } from "@/utils/actions";
 import { Loader2 } from "lucide-react";
 import { toast, Toaster } from "sonner";
-import { revalidatePath } from "next/cache";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function ProductForm({
   categories,
@@ -24,7 +23,6 @@ function ProductForm({
   const [selectedCategories, setSelectedCategories] = useState<
     { id: string; name: string }[]
   >([]);
-  console.log(selectedCategories);
 
   const router = useRouter();
   const form = useForm<z.infer<typeof formproductSchema>>({

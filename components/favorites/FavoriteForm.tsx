@@ -10,14 +10,13 @@ async function FavoriteForm({
   userId: string | undefined;
 }) {
   const findedFavoriteProduct = await findFavoriteProduct(productId);
-  console.log(findedFavoriteProduct);
 
   return (
     <div>
       <form action={favoriteHandler}>
         <input type="hidden" name="userId" value={userId} />
         <input type="hidden" name="productId" value={productId} />
-        <FavoriteBtn findProduct={findedFavoriteProduct?.id}/>
+        <FavoriteBtn findProduct={findedFavoriteProduct?.id} />
       </form>
     </div>
   );

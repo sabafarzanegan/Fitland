@@ -1,10 +1,8 @@
-import CartProductList from "@/components/cart/CartProductList";
-import LoadingProduct from "@/components/product/LoadingProduct";
 import Pagination from "@/components/product/Pagination";
-import ProductList from "@/components/product/ProductList";
+
 import TableProducts from "@/components/table/TableProducts";
 import { getAllProduct } from "@/utils/actions";
-import { Suspense } from "react";
+
 async function page({
   searchParams,
 }: {

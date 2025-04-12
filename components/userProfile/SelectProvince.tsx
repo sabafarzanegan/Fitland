@@ -24,9 +24,7 @@ function SelectProvince() {
         const data = await res.json();
 
         setStates(data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     getStates();
   }, []);
@@ -41,9 +39,7 @@ function SelectProvince() {
           const data = await res.json();
 
           setCities(data);
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) {}
       };
       getCitis();
     }

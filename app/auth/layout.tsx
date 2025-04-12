@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ReactNode } from "react";
 
 function layout({ children }: { children: ReactNode }) {

@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function FilterBtnCategoties({
   category,
@@ -10,7 +10,6 @@ function FilterBtnCategoties({
   const [filter, setFilter] = useState<string>("");
   const router = useRouter();
   const searchParam = useSearchParams();
-  console.log(searchParam.getAll("category"));
 
   const categoryHandler = (value: string) => {
     const param = new URLSearchParams(window.location.search);

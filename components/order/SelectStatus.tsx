@@ -1,7 +1,6 @@
 "use client";
 import { changeOrderStatus } from "@/utils/actions";
 import { cn } from "@/utils/lib";
-import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import { toast, Toaster } from "sonner";
 
@@ -26,9 +25,7 @@ function SelectStatus({
       } else {
         toast.error("خطا دوباره تلاش کنید");
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (

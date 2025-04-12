@@ -1,5 +1,4 @@
 import AdminLinks from "@/components/admin/AdminLinks";
-import { getUserInfo } from "@/utils/actions";
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 

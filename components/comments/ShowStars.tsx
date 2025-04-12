@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 
 async function ShowStars({ productId }: { productId: string | undefined }) {
   const res = await getStarByProductId(productId);
-  console.log(res);
+
   const stars = res?.comments.map((item) => {
     return item.score;
   });

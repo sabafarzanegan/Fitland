@@ -8,7 +8,6 @@ async function page() {
   const user = await getUser();
   const userInfo = await getUserInfo(user?.id);
   const res = await getOrder(userInfo?.id);
-  console.log(res);
 
   return (
     <div

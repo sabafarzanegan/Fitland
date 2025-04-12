@@ -6,7 +6,6 @@ interface props {
 }
 async function UserOrders({ id }: { id: string }) {
   const orders = await findOrder(id);
-  console.log(orders);
 
   return (
     <div className="max-w-xl w-full">

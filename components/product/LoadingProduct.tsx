@@ -1,4 +1,3 @@
-import Loading from "../loading/Loading";
 import Skeleton from "../loading/Skeleton";
 
 function LoadingProduct() {

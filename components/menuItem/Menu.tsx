@@ -1,5 +1,5 @@
-import { menueItem, menuFilter } from "@/assets/helper/helper";
-import Image from "next/image";
+import { menueItem } from "@/assets/helper/helper";
+
 import Link from "next/link";
 
 function Menu() {

@@ -1,6 +1,5 @@
 import FavorteCard from "@/components/card/FavorteCard";
-import ProductCard from "@/components/card/ProductCard";
-import { favoriteUser, getProductById, getUserInfo } from "@/utils/actions";
+import { favoriteUser } from "@/utils/actions";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";

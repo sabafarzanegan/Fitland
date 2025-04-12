@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  console.log(user);
+
   if (!user) {
     return redirect("/auth/sign-in");
   }

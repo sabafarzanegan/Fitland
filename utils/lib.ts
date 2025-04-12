@@ -12,7 +12,6 @@ export const calcDiscount = (price: number, discountPrice: number) => {
   }
   const increaseAmount = price - discountPrice;
   const calPresentage = (increaseAmount / price) * 100;
-  console.log(calPresentage);
 
   return Number(calPresentage.toFixed(0)).toLocaleString("fa-IR");
 };

@@ -20,16 +20,17 @@ function ProductFeature({
     () => product?.colors?.[0] || null
   );
 
+
   const selectedProduct = {
-    productId: product.id,
+    productId: product?.id,
     size: selecedSize?.value,
     sizeId: selecedSize?.id,
     color: selectedColor?.hex,
     colorId: selectedColor?.id,
-    price: product.price,
-    discountPrice: product.discountPrice,
-    image: product.images[0]?.url,
-    name: product.name,
+    price: product?.price,
+    discountPrice: product?.discountPrice,
+    image: product?.images[0]?.url,
+    name: product?.name,
   };
 
   return (
@@ -41,7 +42,7 @@ function ProductFeature({
       </div>
       {/* price  */}
       <div className="space-y-[20px]">
-        {(product.discountPrice as number) > 0 && (
+        {(product?.discountPrice as number) > 0 && (
           <p className="text-secondary-main text-[24px] lg:text-[32px] font-bold">
             {product?.discountPrice?.toLocaleString("fa-IR")}تومان
           </p>
@@ -50,7 +51,7 @@ function ProductFeature({
         <div className="flex items-center gap-x-[40px]">
           <p
             className={`text-secondary-main font-bold  ${
-              (product.discountPrice as number) > 0
+              (product?.discountPrice as number) > 0
                 ? "line-through text-neutral-400 font-normal text-[18px] lg:text-[24px]"
                 : ""
             } `}>

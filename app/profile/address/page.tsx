@@ -12,7 +12,7 @@ async function page() {
   }
   const userInfo = await getUserInfo(user?.id);
   const addres = await getAddressInfo(userInfo?.id);
-  console.log(addres);
+
   const addressInfo = {
     city: addres?.city,
     address: addres?.address as string,

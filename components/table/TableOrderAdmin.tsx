@@ -7,15 +7,12 @@ import {
   TableRow,
   TableCell,
 } from "../ui/table/Table";
-import { getUserInfo, getUserInfoForOrder } from "@/utils/actions";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { getUserInfoForOrder } from "@/utils/actions";
+
 import Link from "next/link";
 
 async function TableOrderAdmin({ order }: { order: orderData }) {
-  console.log(order);
   const userInfo = await getUserInfoForOrder(order?.userId as string);
-  console.log(userInfo);
-  console.log(order?.createdAt?.toLocaleString("fa-IR").toString().split(","));
 
   return (
     <div>

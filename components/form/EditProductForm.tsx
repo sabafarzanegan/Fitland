@@ -24,7 +24,7 @@ function EditProductForm({
   const [selectedCategories, setSelectedCategories] = useState<
     { id: string; name: string }[] | undefined
   >(product?.categories || []);
-  console.log(selectedCategories);
+
 
   const form = useForm<z.infer<typeof formproductSchema>>({
     resolver: zodResolver(formproductSchema),
@@ -41,7 +41,6 @@ function EditProductForm({
     },
   });
   const onSubmit = async (values: z.infer<typeof formproductSchema>) => {
-    console.log(values);
     const res = await updateProductById(
       product?.id as string,
       values,
@@ -139,10 +138,6 @@ function EditProductForm({
             <h3>دسته بندی ها</h3>
             <div className="flex items-center justify-between flex-wrap py-2">
               {categories?.map((item) => {
-                console.log(
-                  product?.categories?.some((cate) => cate.id == item.id)
-                );
-
                 return (
                   <>
                     <fieldset className="">
