@@ -16,10 +16,10 @@ async function ShowStars({ productId }: { productId: string | undefined }) {
     <div>
       <div className="flex gap-1 items-center">
         <div>
-          <Star className="w-4 h-4 text-[#FF991F] fill-[#FF991F]" />
+          <Star className="w-3 h-3 text-[#FF991F] fill-[#FF991F]" />
         </div>
         <div>
-          <p className="text-lg">
+          <p className="text-md">
             {((totalStar || 0) / (stars?.length as number) || 1).toLocaleString(
               "fa-IR"
             )}

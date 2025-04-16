@@ -5,7 +5,6 @@ import FavoriteForm from "@/components/favorites/FavoriteForm";
 import ProductAd from "@/components/product/advertize/ProductAd";
 import DescriptonProduct from "@/components/product/DescriptonProduct";
 import ProductFeature from "@/components/product/ProductFeature";
-import ShareButton from "@/components/product/ShareButton";
 import { getProductById, getUserInfo } from "@/utils/actions";
 import { getProduct } from "@/utils/type";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
@@ -32,7 +31,7 @@ async function page({ params }: { params: { id: string | undefined } }) {
             {user && (
               <FavoriteForm productId={params?.id} userId={userInfo?.id} />
             )}
-            <ShareButton productId={params?.id} />
+            {/* <ShareButton productId={params?.id} /> */}
             <ShowStars productId={product?.id} />
           </div>
         </div>

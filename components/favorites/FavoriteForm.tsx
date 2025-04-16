@@ -12,13 +12,11 @@ async function FavoriteForm({
   const findedFavoriteProduct = await findFavoriteProduct(productId);
 
   return (
-    <div>
-      <form action={favoriteHandler}>
-        <input type="hidden" name="userId" value={userId} />
-        <input type="hidden" name="productId" value={productId} />
-        <FavoriteBtn findProduct={findedFavoriteProduct?.id} />
-      </form>
-    </div>
+    <form action={favoriteHandler} className="mt-2">
+      <input type="hidden" name="userId" value={userId} />
+      <input type="hidden" name="productId" value={productId} />
+      <FavoriteBtn findProduct={findedFavoriteProduct?.id} />
+    </form>
   );
 }
 

@@ -3,8 +3,8 @@
   margin: auto;
   --slide-height: 19rem;
   --slide-spacing: 1rem;
-  --slide-size: 100%;
-  --slide-spacing-sm: 1.6rem;
+  --slide-size: 50%;
+  --slide-spacing-sm: 1.2rem;
   --slide-size-sm: 50%;
   --slide-spacing-lg: 2rem;
   --slide-size-lg: calc(100% / 3);
@@ -17,6 +17,12 @@
   display: flex;
   touch-action: pan-y pinch-zoom;
   margin-left: calc(var(--slide-spacing) * -1);
+}
+
+@media (max-width: 550px) {
+  .embla {
+    --slide-size: 70%;
+  }
 }
 @media (min-width: 750px) {
   .embla__container {

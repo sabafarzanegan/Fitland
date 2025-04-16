@@ -12,7 +12,7 @@ function BrandCart({
   link: string;
 }) {
   return (
-    <Link href={link} className="w-[360px] h-[450px]">
+    <Link href={link} className="max-w-[360px] w-full h-[450px]">
       <div className=" w-full h-full relative z-40">
         <div className=" w-full h-full relative rounded-2xl overflow-hidden aspect-square">
           <Image src={img} fill alt="" />
